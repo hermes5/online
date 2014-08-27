@@ -1,0 +1,183 @@
+v2.0.4
+- HERMES-171 ConcurrentExecutionException bei Szenario Download 
+- HERMES-172 "Relations" statt "Relation" bei Rollen, Aufgaben und Ergebnissen
+- HERMES-173 Texte für die Szenarioübersichtseite müssen noch aktualisiert werden
+- HERMES-174 "Voir le scénario" soll geändert werden in "Consulter le scénario"
+- HERMES-175 Druck XML: "Beziehungen" statt "Aufgaben und Ergebnisse" bei den Rollen
+- HERMES-176 Frontpage pro Umgebung auf statischer Webspace
+
+v2.0.3
+- CSS Mimetype Bug fixed
+
+v2.0.2
+- HERMES-165 Beim Szenario "Scénario prestation / produit" werden die Bilder auf Französisch nicht dargestellt
+- HERMES-166 Beim Szenario "Scénario système IT" funktioniert der Link auf das unterste Bild nicht
+- HERMES-167 Ergebnis in mehreren Aufgaben wird nicht richtig dargestellt
+- Styling der Beziehungstabellen verbessert
+- Suchbegriffe werden geloggt
+- Migration des App-Servers auf Wilfly 8.0
+
+v2.0.1
+- Performanceverbesserungen beim Publizieren
+- Französische Texte
+- Suchfunktion (HERMES-144) unterstützt Anführungszeichen
+
+v2.0.0
+- HERMES-116 Silbentrennung
+- HERMES-131 Szenario Uebersetzungen gehen verloren bei neuem Import
+- HERMES-132 Uebersetzte Bilder und Vorlagen erkennen
+- HERMES-143 Export nach PrintXML
+- HERMES-147 Statischer Webspace
+- HERMES-154 Szenarien vorher anschauen können
+- HERMES-163 Ergebnisübersichtstabelle
+- HERMES-164 Suchfunktion: Gewisse Worte werden nicht gefunden
+
+v1.2.2
+- HERMES-148 XML Datei für Tool Entwickler
+- HERMES-153 Szenarien mit mehreren Modulen
+- HERMES-159 Crash der Übersetzungsdetailseite
+- HERMES-160 Vorlagenlink in der Anwenderlösung
+- HERMES-161 Anleitung MS Project
+- HERMES-162 Checkboxen für Vorlagen immer auswählbar
+
+v1.2.1
+- HERMES-134 Links statt MS Office Vorlage
+
+v1.2.0
+- HERMES-149 Eine MS Projekt Vorlage nebst der Excel Vorlage erzeugen
+- HERMES-146 Diverse kleine Verbesserungen
+- HERMES-145 Zip mit den Templates im Szenario
+- HERMES-144 Suchfunktion 
+
+v1.1.6
+- HERMES-140 Schweizerische Eidgenossenschaftslogo in Vorlagen 
+- HERMES-127 Beschreibung eigener Module
+- HERMES-135 Bullet in der Navigation im IE 7  
+- HERMES-142 Mit IE7 kompatibel machen 
+- HERMES-136 Darstellungsproblem bei IE7 
+
+v1.1.5
+- HERMES-137 - Upload von Logos und Vorlagen mit "." in Filename
+- Korrekte Links zu Vorlagen in Webpublisher Artifakt-Übersicht
+
+v1.1.4
+- "Informieren" link geändert
+
+v1.1.3
+- Neuer Header
+
+v1.1.2
+- Workbreakdownstructure.xlsx: Unter den Phasen werden nur die dazugehörigen Aufgaben dargestellt
+
+v1.1.1
+- HERMES-129 - Sortierung mit Umlauten
+- HERMES-130 - Error nach Umbenennung Vorlage
+
+v1.1.0
+- Performance Optimierungen für Szenario Download, Publish und XML Export
+- HERMES-128 "Über Hermes" umbenennen nach Informieren
+- HERMES-127 Beschreibung eigener Module
+- HERMES-126 Arbeitsstrukturplan umbenennen
+
+v1.0.6
+- HERMES-125 Ergebnisbeschreibung fehlt
+
+v1.0.5
+- HERMES-124 Sortierung im Druck-XML
+- HERMES-123 Ergebnisse Beschreibung in Druck XML
+
+v1.0.4
+- changed page-tab title Hermes5->HERMES
+- HERMES-120 Nicht publizierte Sprachen ausblenden
+- HERMES-121 Menu Sortierung in Französisch
+
+v1.0.3
+- Lokalisierung der Startseite
+
+v1.0.2
+- Performance von Anwenderlösung verbessert
+
+v1.0.1
+- Nullpointer bei Modellinkosistenz entfernt
+
+v1.0.0
+- Bug Fixed: HERMES-115 DruckXML: bei den Modulen fehlen die Tabellen 
+
+v0.5.0
+- HERMES-114 Komma zwischen Ergebnisrollen
+- HERMES-113 Arbeitstrukturplan anpassen
+- Bug fixed: HERMES-112 Sortierung der Szenarien
+- Bug fixed: HERMES-111 Absturz beim Hochladen von Übersetzungen
+- Diverse kleine Bugfixes
+
+v0.4.0
+- Bug fixed: HERMES-110 Aufgabe, Ergebnisse, Module und Rollen im Druck XML alphabetisch sortiert 
+- Bug fixed: HERMES-109 Ergebnisübersicht Tabelle pro Modul gruppiert statt pro Ergebnis was zu mehreren Modulen führen kann
+- Bug fixed: HERMES-108 Links in der Tabelle beim Mouse Over unterstrichen
+- Bug fixed: HERMES-107 Statt "Dokumentation" das Wort "Szenarioleitfaden" verwenden
+- Bug fixed: HERMES-106 Ein Text weist beim Hochladen des Logos auf die ideale Grösse des Bildes hin
+- Bug fixed: HERMES-105 Text korrigiert beim Hochladen von Vorlage
+
+v0.3.1
+- Removed bullet points from startmenu
+
+v0.3.0
+- Bug fixed: HERMES-104 Bullet Points statt Ordered List
+- Bug fixed: HERMES-103 Ergebnis Feld Purpose
+- Bug fixed: HERMES-102 Projektnummer entfernen
+- Bug fixed: HERMES-101 Links nicht unterstreichen in Tabellen
+- Bug fixed: HERMES-100 Seite Szenario Dienstleistung
+- Bug fixed: HERMES-99 Spalten Szenario Fix
+
+v0.2.1 
+- Wenn mitten in der Anwenderlösung eingestiegen wird, wird kein Fehler mehr geworfen, sondern auf die Einstiegseite gesprungen
+- Beim Einstieg in die Anwenderlösung wird das aktuell publizierte Modell geladen (nicht nur bei neuer Session)
+
+v0.2.0
+- rote Farbe #cc006b für die Milestones in den Szenariotabellen und den einzelnen Modultabellen
+- null in XML Export entfernt, trat im Falle einer leeren Aufgabenkurzbeschreibung auf
+- Im XML Export werden die Links zwischen Elementen mit <i> markiert. Nicht markiert werden Rollen. 
+
+v0.1.0
+- Startseite wird als Frame von extern eingebunden
+- Milestones Überschriften werden wie alle anderen Überschriften in Blau gehalten
+- Verantwortliche Rolle aus Ergebnis als einzelner Punkt entfernt 
+- Verantwortliche Rolle aus Aufgabe als einzelner Punkt entfernt 
+- Leserlichkeit der Beziehungstabelle zu erhöht: Tabelle nach dem Inhalt der ersten drei Spalten gruppiert und Spalte für Mitarbeitend an Ergebnis entfernt (Mitarbeitenden am Ergebnis werden unter Verantwortlich für Ergebnis aufgeführt) 
+
+v0.0.14
+-	ISB Link statt Version im Header (Version ist in der HTML-Source)
+-	Neue Texte auf de und fr
+-	Bessere Logging und Notification Mechanismen falls etwas schief läuft
+-	Neue Bulletpoints
+-	Neues Design der Tabellen
+-	Verschiedene Bugfixes
+
+v0.0.13
+-	HERMES-97: Print von der Seite "Verstehen" (CR)
+-	Bug mit duplizierten Einträgen in den Beziehungstabellen
+-	Bullet Points von Stämpfli
+-	Projektname statt Szenarioname im Menu bei den generierten Dokumenten der Anwenderlösung
+-	IE Bug bei den generierten Dokumenten der Anwenderlösung
+-	Französische Message Properties hinzugefügt
+-	Diverse kleine Bugfixes
+
+v0.0.10
+-	Übersichtstabelle Aufgaben in Onlinepublikation und XML
+-	Übersichtstabelle Ergebnisse in Onlinepublikation und XML
+-	Design Changes gemäss Nicolas von Aarburg
+-	Exportieren von Übersetzungen für freigegebene Texte
+
+v0.0.9
+-	Footer hinzugefügt
+-	Hermes Website CustomCategory heisst nun „hermes_website“ (method libraries mit altem name funktionieren nicht mehr)
+-	IE Bugfixes
+
+v0.0.8
+-	HERMES-78 Als Anwender kann ich meine eigenes Szenario online publizieren
+-	Fehlerhandling verbessert
+-	Startseite im Zip hinzugefügt
+
+v0.0.7
+-	Unter Onlinepublikation kann eine erste Version des XML Files für die Druckschnittstelle heruntergeladen werden.
+-	Wenn ein Modell publiziert wird, wird die Online Publikation erstellt, die dann unter Hermes lernen verfügbar ist. Bei der Online Publikation wird für jedes Szenario und jedes Modul eine Übersicht mit den Aufgaben erstellt.

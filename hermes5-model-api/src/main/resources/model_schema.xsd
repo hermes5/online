@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:h5model="http://www.hermes.admin.ch/model/hermes5/v1"
+	targetNamespace="http://www.hermes.admin.ch/model/hermes5/v1">
+
+	<xsd:element name="model" type="h5model:modelType" />
+
+	<xsd:complexType name="modelType">
+		<xsd:sequence>
+			<xsd:element ref="h5model:roles" maxOccurs="1" minOccurs="0" />
+			<xsd:element ref="h5model:modules" maxOccurs="1" minOccurs="0" />
+			<xsd:element ref="h5model:tasks" maxOccurs="1" minOccurs="0" />
+			<xsd:element ref="h5model:workproducts" maxOccurs="1" minOccurs="0" />
+			<xsd:element ref="h5model:scenario" maxOccurs="1" minOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="roles">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="h5model:role" maxOccurs="unbounded" minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="modules">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="h5model:module" maxOccurs="unbounded" minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+
+	<xsd:element name="tasks">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="h5model:task" maxOccurs="unbounded" minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="workproducts">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="h5model:workproduct" maxOccurs="unbounded" minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+
+	<xsd:element name="role">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="presentationName" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="description" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="responsibility" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="authority" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="skills" type="xsd:string" maxOccurs="1" minOccurs="0" />
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:string" use="required" />
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="module">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="presentationName" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="briefDescription" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="description" type="xsd:string" maxOccurs="1" minOccurs="0" />
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:string" use="required" />
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+
+	<xsd:element name="task">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="presentationName" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="purpose" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="description" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="basicIdea" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="hermesSpecific" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="activities" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="checklist" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="responsibleRole">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element ref="h5model:roleRef" maxOccurs="1" minOccurs="0" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:string" use="required" />
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="workproduct">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="presentationName" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="description" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="topic" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element name="template" minOccurs="0" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:attribute name="name" type="xsd:string" use="required" />
+						<xsd:attribute name="url" type="xsd:string" use="required" />
+						<xsd:attribute name="type" type="h5model:templateType" use="required" />
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="collaborationRoles">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element ref="h5model:roleRef" maxOccurs="unbounded" minOccurs="0" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:string" use="required" />
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:simpleType name="templateType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="file" />
+			<xsd:enumeration value="webUrl" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:element name="scenario">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="presentationName" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element ref="h5model:phase" maxOccurs="unbounded" minOccurs="0" />
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:string" use="required" />
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="phase">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="presentationName" type="xsd:string" maxOccurs="1" minOccurs="0" />
+				<xsd:element ref="h5model:moduleRef" maxOccurs="unbounded" minOccurs="0" />
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:string" use="required" />
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+
+	<xsd:element name="moduleRef">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="h5model:taskRef" maxOccurs="unbounded" minOccurs="0" />
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:string" use="required" />
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="taskRef">
+
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="h5model:workproductRef" maxOccurs="unbounded" minOccurs="0" />
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:string" use="required" />
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="workproductRef">
+		<xsd:complexType>
+			<xsd:attribute name="id" type="xsd:string" use="required" />
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="roleRef">
+		<xsd:complexType>
+			<xsd:attribute name="id" type="xsd:string" use="required" />
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

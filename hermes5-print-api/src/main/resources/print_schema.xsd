@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:h5print="http://www.hermes.admin.ch/print/hermes5"
+	targetNamespace="http://www.hermes.admin.ch/print/hermes5">
+
+	<xsd:element name="book" type="h5print:book_type" />
+
+	<xsd:complexType name="book_type">
+		<xsd:sequence>
+			<xsd:element ref="h5print:chapter" maxOccurs="unbounded"
+				minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="chapter">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="name" type="xsd:string" minOccurs="0" />
+				<xsd:element name="content" type="xsd:string" minOccurs="0" />
+				<xsd:element ref="h5print:section" maxOccurs="unbounded"
+					minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="section">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="name" type="xsd:string" minOccurs="0" />
+				<xsd:element name="content" type="xsd:string" minOccurs="0" />
+				<xsd:element ref="h5print:subsection" maxOccurs="unbounded"
+					minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="subsection">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="name" type="xsd:string" minOccurs="0" />
+				<xsd:element name="content" type="xsd:string" minOccurs="0" />
+				<xsd:element ref="h5print:subsubsection" maxOccurs="unbounded"
+					minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="subsubsection">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="name" type="xsd:string" minOccurs="0" />
+				<xsd:element name="content" type="xsd:string" minOccurs="0" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+
+
+</xsd:schema>

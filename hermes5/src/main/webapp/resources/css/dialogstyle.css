@@ -1,0 +1,15 @@
+.ui-widget-header{
+	background-color: #99D1EE;
+	text-shadow: none;
+	color: #FFFFFF;
+}
+
+.ui-widget-content .h3{
+	color:#008ACD;
+}
+
+.dialog-buttons-div{
+	border-top:1px solid #CCCCCC;
+	width:100%;
+	text-align:center;
+}

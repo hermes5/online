@@ -1,0 +1,27 @@
+<div class="title">
+	<span class="h1">#if($titleKey)$l.text($titleKey): #end$l.localize($me.presentationName)</span>
+	#if($app == 'al') 
+		<a href="index.html">$l.text('al_doc_back_to_scenario')</a>
+	#end
+</div>
+
+#if($me.briefDescription && $StringUtil.isNotBlank($l.localize($me.briefDescription))) 
+	<p>$l.localize($me.briefDescription)</p>
+#end
+
+#if($me.mainDescription && $StringUtil.isNotBlank($l.localize($me.mainDescription))) 
+<span class="h2">$l.text('h5_rolle_maindescription')</span>
+<p>$l.localize($me.mainDescription)</p>
+#end
+
+#if($me.assignementApproaches && $StringUtil.isNotBlank($l.localize($me.assignementApproaches))) 
+<span class="h2">$l.text('h5_rolle_assignmentapproaches')</span>
+	<p>$l.localize($me.assignementApproaches)</p>
+#end
+
+#if($me.skills  && $StringUtil.isNotBlank($l.localize($me.skills))) 
+<span class="h2">$l.text('h5_rolle_skills')</span>
+	<p>$l.localize($me.skills)</p>
+#end
+
+#parse( "ch/admin/isb/hermes5/business/rendering/relationshiptable.vm" )

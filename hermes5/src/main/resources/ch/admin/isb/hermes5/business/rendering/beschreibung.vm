@@ -1,0 +1,7 @@
+
+<span class="h1">$l.localize($me.presentationName)</span>
+
+
+#if($me.mainDescription && $StringUtil.isNotBlank($l.localize($me.mainDescription)))
+	<p>$l.localize($me.mainDescription)</p>
+#end

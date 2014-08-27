@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+</head>
+<body>
+	<composite:interface>
+	</composite:interface>
+	<composite:implementation>
+
+		<div class="h5-clear">
+		<h:messages styleClass="h5-messages" infoClass="h5-messages-info"
+				warnClass="h5-messages-warn" errorClass="h5-messages-error"
+				globalOnly="true" />
+			<h:panelGroup
+				rendered="#{not empty facesMessagesController.clientIdsWithMessages}"
+				styleClass="h5-messages-container" layout="block">
+				<ul>
+					<ui:repeat var="clientId"
+						value="#{facesMessagesController.clientIdsWithMessages}">
+						<ui:repeat var="message"
+							value="#{facesMessagesController.getMessagesForClientId(clientId)}">
+							<h:outputText
+									styleClass="h5-messages h5-messages-error"
+									value="#{messageProvider.tryToResolveMessageKey(message.detail)}"
+									rendered="#{message.severity.ordinal ne 0}" /> <h:outputText
+									styleClass="h5-messages h5-messages-info"
+									value="#{messageProvider.tryToResolveMessageKey(message.detail)}"
+									rendered="#{message.severity.ordinal eq 0}" />
+						</ui:repeat>
+					</ui:repeat>
+				</ul>
+			</h:panelGroup>
+		</div>
+	</composite:implementation>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+</head>
+<body>
+	<composite:interface>
+		<composite:attribute name="message1" type="java.lang.String"
+			default="#{msg.waitingDialog}" />
+		<composite:attribute name="widgetVar" type="java.lang.String"
+			default="progressdialogvar" />
+	</composite:interface>
+	<composite:implementation>
+		<p:dialog modal="true" widgetVar="#{cc.attrs.widgetVar}"
+			 width="600" draggable="false"
+			closable="false" resizable="false" position="80px,180px">
+			<div>
+				<h:outputText value="#{cc.attrs.message1}" />
+				<br /> <br />
+				<p:graphicImage value="/resources/images/ajax-loader.gif"
+					styleClass="loading" />
+			</div>
+		</p:dialog>
+	</composite:implementation>
+</body>
+</html>

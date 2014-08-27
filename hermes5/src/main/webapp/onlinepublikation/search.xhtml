@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5"
+	template="/templates/template-default.xhtml">
+
+	<ui:define name="top-menu">
+		<h5:top-menu id="top-menu" selected="onlinepublikation" />
+	</ui:define>
+
+	<ui:define name="footer">
+		<ui:include src="../resources/h5/footer.xhtml" />
+	</ui:define>
+
+
+	<ui:define name="content">
+		<!--  assure jquery is loaded -->
+		<p:panel style="display: none;"></p:panel>
+
+		<h:outputText
+			value="#{onlinePublikationController.getPageContent('menu.html')}"
+			escape="false" />
+		<div id="content-small">
+			<h:form id="searchResult">
+
+				<ui:fragment
+					rendered="#{searchController.searchPaginator.recordsTotal > 0}">
+
+					<div class="webBlaetternDiv">
+						<div class="floatLeft">
+							<h:commandLink class="webServiceContent" id="to-first-page-link"
+								title="#{msg.search_to_first_page}" value=" « "
+								action="#{searchController.searchPaginator.toFirstPage()}" />
+							<h:commandLink id="to-prev-page-link"
+								title="#{msg.search_to_prev_page}" value=" ‹ "
+								action="#{searchController.searchPaginator.prev()}" />
+							<ui:repeat id="page-links"
+								value="#{searchController.searchPaginator.navigationPages}"
+								var="index">
+								<h:commandLink
+									class="#{index == searchController.searchPaginator.pageIndex ? 'webServiceContent bold' : 'webServiceContent'}"
+									id="to-page-link-#{index}"
+									title="#{msg.search_to_page} #{index}" value=" #{index} "
+									action="#{searchController.searchPaginator.toPage(index)}" />
+							</ui:repeat>
+							<h:commandLink class="webServiceContent" id="to-next-page-link"
+								title="#{msg.search_to_next_page}" value=" › "
+								action="#{searchController.searchPaginator.next()}" />
+							<h:commandLink class="webServiceContent" id="to-last-page-link"
+								title="#{msg.search_to_last_page}" value=" » "
+								action="#{searchController.searchPaginator.toLastPage()}" />
+						</div>
+						<div class="floatRight webServiceContent">
+							<h:outputText
+								value="#{msg.search_article} #{searchController.searchPaginator.fromIndex} - #{searchController.searchPaginator.toIndex} #{msg.search_from} #{searchController.searchPaginator.recordsTotal}" />
+						</div>
+						<br />
+					</div>
+					<br />
+					<div>
+						<ui:repeat value="#{searchController.searchPaginator.model}"
+							var="searchResult">
+
+							<div>
+								<h:panelGroup rendered="#{searchResult.type.hasWebFont()}">
+									<span class="#{searchResult.type.webFont.cssClass}">#{searchResult.type.webFont.unicode}</span>
+								</h:panelGroup>
+								<a class="webTextLink" href="#{searchResult.url}"><h:outputText value="#{searchResult.presentationName}" /></a>
+							</div>
+							<div class="webText">
+								<h:outputText escape="false" value="#{searchResult.content}" />
+							</div>
+							<br />
+						</ui:repeat>
+
+					</div>
+					<div class="webBlaetternDiv">
+						<div class="floatLeft">
+							<h:commandLink class="webServiceContent"
+								id="to-first-page-link-bottom"
+								title="#{msg.search_to_first_page}" value=" « "
+								action="#{searchController.searchPaginator.toFirstPage()}" />
+							<h:commandLink id="to-prev-page-link-bottom"
+								title="#{msg.search_to_prev_page}" value=" ‹ "
+								action="#{searchController.searchPaginator.prev()}" />
+							<ui:repeat id="page-links-bottom"
+								value="#{searchController.searchPaginator.navigationPages}"
+								var="index">
+								<h:commandLink
+									class="#{index == searchController.searchPaginator.pageIndex ? 'webServiceContent bold' : 'webServiceContent'}"
+									id="to-page-link-bottom-#{index}"
+									title="#{msg.search_to_page} #{index}" value=" #{index} "
+									action="#{searchController.searchPaginator.toPage(index)}" />
+							</ui:repeat>
+							<h:commandLink class="webServiceContent"
+								id="to-next-page-link-bottom" title="#{msg.search_to_next_page}"
+								value=" › " action="#{searchController.searchPaginator.next()}" />
+							<h:commandLink class="webServiceContent"
+								id="to-last-page-link-bottom" title="#{msg.search_to_last_page}"
+								value=" » "
+								action="#{searchController.searchPaginator.toLastPage()}" />
+						</div>
+						<div class="floatRight webServiceContent">
+							<h:outputText
+								value="#{msg.search_article} #{searchController.searchPaginator.fromIndex} - #{searchController.searchPaginator.toIndex} #{msg.search_from} #{searchController.searchPaginator.recordsTotal}" />
+						</div>
+						<br />
+					</div>
+				</ui:fragment>
+
+				<ui:fragment
+					rendered="#{searchController.searchPaginator.recordsTotal == 0}">
+					<br />
+					<h:outputText id="searchResultEmpty"
+						value="#{msg.search_no_result_found}" />
+				</ui:fragment>
+			</h:form>
+		</div>
+
+	</ui:define>
+
+</ui:composition>

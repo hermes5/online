@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+</head>
+<body>
+	<composite:interface>
+		<composite:attribute name="selected" type="java.lang.String" />
+	</composite:interface>
+	<composite:implementation>
+
+		<ul class="donthyphenate">
+			<li class="h5_menuitem">
+				<div class="navi-ebene1-div #{cc.attrs.selected == 'szenarien' ? 'selected' : 'notselected'}">
+					<div class="navi-ebene1-text-div">
+						<h:link id="menu-szenarien" class="navi-ebene1" outcome="/anwenderloesung/szenarien-overview" value="#{msg.anwenderloesung_szenarien}" />
+					</div>
+				</div>
+			</li>
+			<li class="h5_menuitem">
+				<div class="navi-ebene1-div #{cc.attrs.selected == 'vorlagen' ? 'selected' : 'notselected'}">
+					<div class="navi-ebene1-text-div">
+						<h:link id="menu-vorlagen" class="navi-ebene1" outcome="/anwenderloesung/vorlagen" value="#{msg.anwenderloesung_vorlagen}" />
+					</div>
+				</div>
+			</li>
+		</ul>
+
+
+	</composite:implementation>
+</body>
+</html>

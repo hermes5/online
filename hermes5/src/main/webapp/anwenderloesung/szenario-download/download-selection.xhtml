@@ -1,0 +1,42 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5">
+
+    <table>
+		<tr>
+			<th width="100px" class="szenario-download-select-cell"><h:outputText
+					class="bold" value="#{msg.al_szenariodownload_languages}" />
+					
+				<h:selectManyCheckbox layout="pageDirection" value="#{szenarioDownloadController.languages}" id="languageSelector">
+					<f:selectItem id="checkbox-de" itemLabel="de" itemValue="de" />
+					<f:selectItem id="checkbox-fr" itemLabel="fr" itemValue="fr"
+						itemDisabled="#{not localeController.isEnabled('fr')}" />
+					<f:selectItem id="checkbox-it" itemLabel="it" itemValue="it"
+						itemDisabled="#{not localeController.isEnabled('it')}" />
+					<f:selectItem id="checkbox-en" itemLabel="en" itemValue="en"
+						itemDisabled="#{not localeController.isEnabled('en')}" />
+				</h:selectManyCheckbox></th>
+			<th class="szenario-download-select-cell"><h:outputText
+					class="bold" value="#{msg.al_szenariodownload_components}" />
+					
+				<h:selectManyCheckbox layout="pageDirection" value="#{szenarioDownloadController.components}" id="artifactSelector">
+					<f:selectItem id="checkbox-projektstrukturplan"
+						itemLabel="#{msg.al_szenariodownload_components_projektstrukturplan}"
+						itemValue="projektstrukturplan" />
+					<f:selectItem id="checkbox-dokumentation"
+						itemLabel="#{msg.al_szenariodownload_components_dokumentation}"
+						itemValue="dokumentation" />
+					<f:selectItem id="checkbox-ergebnisvorlagen"
+						itemLabel="#{msg.al_szenariodownload_components_ergebnisvorlagen}"
+						itemValue="ergebnisvorlagen" />
+					<f:selectItem id="checkbox-xmlmodel"
+						itemLabel="#{msg.al_szenariodownload_components_xmlmodel}"
+						itemValue="xmlmodel" />
+				</h:selectManyCheckbox>
+			</th>
+		</tr>
+	</table>
+</f:view>

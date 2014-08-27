@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5" template="/templates/template-anwenderloesung.xhtml">
+
+	<ui:define name="menu">
+		<div id="navigation">
+			<h5:anwenderloesungmenu id="anwenderloesungmenu" selected="vorlagen" />
+		</div>
+	</ui:define>
+
+	<ui:define name="content">
+		<div id="content-small">
+			<script type="text/javascript">
+			$(document).ready(function() {
+				$("input[class*='checkbox-select-all-children-']").live('change', function(){
+					var myClass = $(this).attr("class");
+				    var split = myClass.split("checkbox-select-all-children-")[1];
+				    $("input[class='checkbox-child-"+split+"']").attr('checked',this.checked);
+				});
+			});
+
+		</script>
+			<h:form id="vorlagen-form">
+
+				<p:dialog id="render-download-dialog" modal="true" closable="false" width="450" resizable="false"
+					visible="#{vorlagenController.renderDownloadDialog}">
+
+					<div>
+						<h:outputText value="#{msg.al_vorlagendownload_downloadsuccess}" />
+					</div>
+					<br />
+					<div>
+
+						<br /> <br />
+
+					</div>
+					<div class="dialog-buttons-div">
+						<h:commandButton class="h5-button" value="#{msg.button_close}" action="#{vorlagenController.downloadDialogClose}" />
+						<h:commandButton value="#{msg.button_download}" class="h5-button">
+							<p:fileDownload value="#{vorlagenController.file}" />
+						</h:commandButton>
+					</div>
+				</p:dialog>
+
+
+
+
+				<div>
+					<h:outputText styleClass="h1" value="#{msg.al_vorlagen_title}" />
+				</div>
+				<p>
+					<h:outputText value="#{msg.al_vorlagen_description}" />
+				</p>
+
+				<div>
+
+					<select onchange="document.location.href=this.value;">
+						<option value="#top">#{msg.al_vorlagen_goto}</option>
+						<ui:repeat value="#{vorlagenController.modules}" var="modul">
+							<option value="#modul-#{modul.data.id}"><h5:locText value="#{modul.data.presentationName}" /></option>
+
+						</ui:repeat>
+
+					</select>
+
+				</div>
+
+
+				<ul id="modules" class="vorlagen-list vorlagen-list-outer">
+					<ui:repeat id="modules-repeat" value="#{vorlagenController.modules}" var="modul">
+						<li class="vorlagen-list-modul" id="modul-#{modul.data.id}"><h:panelGrid columns="2" id="modules-list">
+								<h:selectBooleanCheckbox id="checkbox-modul-selection" class="checkbox-select-all-children-#{modul.data.id}"
+									value="#{modul.selected}" />
+								<h:panelGroup>
+									<span class="vorlagen-list-modul-name"><h5:locText value="#{modul.data.presentationName}" /> </span>
+									<ui:remove>
+										<span class="vorlagen-pagetop-link"><a href="#top"><h:outputText value="#{msg.al_vorlagen_totop}" />
+										</a> </span>
+									</ui:remove>
+								</h:panelGroup>
+							</h:panelGrid>
+
+							<ul class="vorlagen-list">
+								<ui:repeat id="document-repeat" value="#{vorlagenController.getDocuments(modul.data)}" var="document">
+									<li>
+										<span class="vorlagen-list-element">
+											<span class="vorlagen-list-element-checkbox">
+												<h:selectBooleanCheckbox id="checkox-document-selection" class="checkbox-child-#{modul.data.id}" value="#{document.selected}" />
+											</span>
+											<span class="vorlagen-list-element-text">
+												<span class="vorlagen-list-element-icon">
+													<span class="#{vorlagenController.getWebFontFor(vorlagenController.getDocumentName(document.data)).cssClass}">#{vorlagenController.getWebFontFor(vorlagenController.getDocumentName(document.data)).getUnicode()}</span>
+												</span>
+												<a href="#{vorlagenController.getDocumentUrl(document.data)}">#{vorlagenController.getDocumentName(document.data)}</a>
+											</span>
+										</span>
+									</li>
+								</ui:repeat>
+								<ui:repeat id="webLink-repeat" value="#{vorlagenController.getWebLinks(modul.data)}" var="link">
+									<li>
+										<span class="vorlagen-list-element">
+											<span class="vorlagen-list-element-checkbox">
+												<!-- No checkbox for web links -->
+											</span>
+											<span class="vorlagen-list-element-text">
+												<span class="vorlagen-list-element-icon">
+													<h:graphicImage library="images" name="ico_extern.gif" />
+												</span>
+												<span><h:outputText value="#{link}" escape="false" /></span>
+											</span>
+										</span>
+									</li>
+								</ui:repeat>
+							</ul>
+						</li>
+					</ui:repeat>
+				</ul>
+				<h:commandButton value="#{msg.al_vorlagen_downloadselected}" id="download-button-bottom"
+					action="#{vorlagenController.downloadSelected}" class="h5-button" type="submit" />
+
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

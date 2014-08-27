@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/templates/template-webpublisher.xhtml">
+
+
+	<ui:define name="content">
+		<div id="content-big">
+		<h5:messages />
+		<h:form id="image-display">
+
+
+
+			<h:outputText styleClass="image-table-title"
+				value="Bild #{imageDisplayController.imageTitle}" />
+
+			<h:commandLink value="Zurück zur Elementübersicht"
+				action="#{imageDisplayController.back}" />
+
+
+			<h:panelGrid columns="2" styleClass="image-table">
+
+				<h:outputText styleClass="h3"
+					value="Deutsch" />
+
+				<h:panelGroup>
+					<div>
+						<h:outputText styleClass="h3"
+							value="Französisch (#{imageDisplayController.image.statusFr})" />
+						<h:commandButton id="delete-fr" value="Löschen"
+							styleClass="image-delete-button"
+							rendered="#{imageDisplayController.imageFr}"
+							action="#{imageDisplayController.deleteFr}"
+							onclick="return confirm('Wollen Sie wirklich löschen?');" />
+					</div>
+
+				</h:panelGroup>
+				<h:panelGroup>
+					<a href="#{imageDisplayController.urlDe}" target="_new"> <h:graphicImage
+							styleClass="image-display-image"
+							url="#{imageDisplayController.urlDe}" /></a>
+				</h:panelGroup>
+				<h:panelGroup>
+					<ui:fragment rendered="#{imageDisplayController.imageFr}">
+						<a href="#{imageDisplayController.urlFr}" target="_new"> <h:graphicImage
+								styleClass="image-display-image"
+								url="#{imageDisplayController.urlFr}" /></a>
+					</ui:fragment>
+					<ui:fragment rendered="#{not imageDisplayController.imageFr}">
+						<span> <h:commandLink id="upload-fr"
+								class="image-display-noimage"
+								value="Bild hochladen"
+								action="#{imageDisplayController.uploadFr}" /></span>
+					</ui:fragment>
+				</h:panelGroup>
+				<h:panelGroup>
+					<div>
+						<h:outputText styleClass="h3"
+							value="Italienisch (#{imageDisplayController.image.statusIt})" />
+						<h:commandButton id="delete-it" value="Löschen"
+							rendered="#{imageDisplayController.imageIt}"
+							styleClass="image-delete-button"
+							action="#{imageDisplayController.deleteIt}"
+							onclick="return confirm('Wollen Sie wirklich löschen?');" />
+					</div>
+				</h:panelGroup>
+				<h:panelGroup>
+					<div>
+						<h:outputText styleClass="h3"
+							value="Englisch (#{imageDisplayController.image.statusEn})" />
+						<h:commandButton id="delete-en" value="Löschen"
+							action="#{imageDisplayController.deleteEn}"
+							rendered="#{imageDisplayController.imageEn}"
+							onclick="return confirm('Wollen Sie wirklich löschen?');"
+							styleClass="image-delete-button" />
+					</div>
+				</h:panelGroup>
+				<h:panelGroup>
+					<ui:fragment rendered="#{imageDisplayController.imageIt}">
+						<a href="#{imageDisplayController.urlIt}" target="_new"> <h:graphicImage
+								styleClass="image-display-image"
+								url="#{imageDisplayController.urlIt}" /></a>
+					</ui:fragment>
+					<ui:fragment rendered="#{not imageDisplayController.imageIt}">
+						<span><h:commandLink id="upload-it"
+								value="Bild hochladen"
+								class="image-display-noimage"
+								action="#{imageDisplayController.uploadIt}" /></span>
+					</ui:fragment>
+				</h:panelGroup>
+				<h:panelGroup>
+
+					<ui:fragment rendered="#{imageDisplayController.imageEn}">
+						<a href="#{imageDisplayController.urlEn}" target="_new"> <h:graphicImage
+								styleClass="image-display-image"
+								url="#{imageDisplayController.urlEn}" /></a>
+					</ui:fragment>
+					<ui:fragment rendered="#{not imageDisplayController.imageEn}">
+						<span> <h:commandLink id="upload-en"
+								class="image-display-noimage"
+								value="Bild hochladen"
+								action="#{imageDisplayController.uploadEn}" />
+						</span>
+					</ui:fragment>
+				</h:panelGroup>
+			</h:panelGrid>
+		</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

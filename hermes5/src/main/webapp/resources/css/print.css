@@ -1,0 +1,38 @@
+#web-header-link,#web-service-content-div,#languages-selector,#web-service-navigation-div,#portal-globalnav,#navigation
+	{
+	display: none;
+}
+
+#web-header-div {
+	display: none;
+}
+
+#content-small {
+	margin-left: 0px;
+}
+
+#web-footer {
+	margin-left: 25px;
+}
+
+.portal-globalnav-search,.portal-globalnav-div {
+	display: none;
+}
+
+.printDruckenSchliesen {
+	display: block;
+	text-align: right;
+}
+
+.webTopContentPrint {
+	display: none;
+}
+
+a.webServiceLink:hover,a.webServiceLink:focus {
+	background: #069;
+	color: white;
+}
+
+[class^="icon-"], [class*=" icon-"], .ico-extern {
+	display: none;
+}

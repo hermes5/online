@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>HERMES</title>
+        <link rel="stylesheet" type="text/css" href="${pathprefix}resources/style.css">
+        <link id="printCSS" rel="stylesheet" type="text/css" href="${pathprefix}resources/style_print.css" media="print">
+</head>
+<body>
+	<div id="visual-portal-wrapper">
+		
+    <div id="web-header-div">
+		<div id="web-header-link"></div>
+		<div id="web-header-logo"></div>
+	</div>
+    #if($c.languages && $c.languages.size() > 1)
+        <div id="languages-selector">
+            <div id="lang-select-form">
+                <ul>
+					#set( $last_index = $c.languages.size() - 1 )
+					#foreach($current_lang in $c.languages) 
+						<li #if($c.languages.indexOf($current_lang).equals($last_index))class="last"#end>
+                            <a class="#if($current_lang.equals($lang))active#{else}inactive#end" href="${pathprefix}start_${current_lang}.html">
+							#if($current_lang.equals('de'))Deutsch#end
+							#if($current_lang.equals('fr'))Français#end
+							#if($current_lang.equals('it'))Italiano#end
+							#if($current_lang.equals('en'))English#end
+							</a>
+						</li>
+					#end
+                </ul>
+            </div>
+        </div>
+	#end
+	<div id="web-service-navigation-div">
+				<div id="web-service-content-div">
+					<ul>
+						<li class="last"> <a href="${pathprefix}start_${lang}.html">$l.text('start_page')</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+		<ul id="portal-globalnav">
+
+			<li class="top-menuitem"><a href="${pathprefix}start_${lang}.html" class="selected">
+					#if($c.szenarioUserData && $StringUtil.isNotBlank($c.szenarioUserData.projektname))
+						$c.szenarioUserData.projektname
+					#else
+						$l.localize($c.szenario.presentationName)
+					#end
+                </a>
+			</li>
+        </ul>
+    <div id="frame-content">
+        <div id="navigation">
+            <ul>
+				#if($c.dokumentation)
+                <li>
+                    <div class="navi-ebene1-div#if($menu.equals('dokumentation')) selected#end">
+                        <div class="navi-ebene1-text-div">
+                            <a href="${pathprefix}scenario/$lang/index.html" class="navi-ebene1">$l.text('al_scenario')</a>
+                        </div>
+                    </div>
+                </li>
+				#end
+				#if($c.projektstrukturplan)
+                <li>
+                    <div class="navi-ebene1-div#if($menu.equals('projektstrukturplan')) selected#end">
+                        <div class="navi-ebene1-text-div">
+                            <a href="${pathprefix}workbreakdownstructure/$lang/index.html" class="navi-ebene1">$l.text('al_workbreakdownstructure')</a>
+                        </div>
+                    </div>
+                </li>
+				#end
+				#if($c.ergebnisvorlagen)
+                <li>
+                    <div class="navi-ebene1-div#if($menu.equals('vorlagen')) selected#end">
+                        <div class="navi-ebene1-text-div">
+                            <a href="${pathprefix}templates/$lang/index.html" class="navi-ebene1">$l.text('al_templates')</a>
+                        </div>
+                    </div>
+                </li>
+				#end
+                #if($c.xmlmodel)
+                <li>
+                    <div class="navi-ebene1-div#if($menu.equals('xmlmodel')) selected#end">
+                        <div class="navi-ebene1-text-div">
+                            <a href="${pathprefix}model/$lang/index.html" class="navi-ebene1">$l.text('al_xmlmodel')</a>
+                        </div>
+                    </div>
+                </li>
+                #end
+            </ul>
+        </div>
+        <div id="content-small">

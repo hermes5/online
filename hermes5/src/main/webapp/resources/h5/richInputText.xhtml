@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:composite="http://java.sun.com/jsf/composite">
+<head>
+</head>
+<body>
+	<composite:interface>
+		<composite:attribute name="value" type="java.lang.String" required="true" />
+		<composite:attribute name="buttons" type="java.lang.String" required="true" />
+		<composite:attribute name="maxHeight" default="100" type="java.lang.String" />
+		<composite:attribute name="iconsPath" default="/resources/images/nicEditorIcons.gif" type="java.lang.String" />
+	</composite:interface>
+
+	<composite:implementation>
+		<div id="#{cc.clientId}">
+			<h:outputScript library="js" name="nicEdit.js" />
+			
+			<h:inputHidden id="textAjax" value="#{cc.attrs.value}" />
+			<h:inputTextarea id="text" />
+			<script type="text/javascript">
+				new nicEditor({
+					buttonList : [#{cc.attrs.buttons}],
+					maxHeight : #{cc.attrs.maxHeight},
+					iconsPath : '#{cc.attrs.iconsPath}'
+				}).panelInstance('#{cc.clientId}_text');
+	
+				//Data binding
+				var editor = $('##{cc.clientId}').find('.nicEdit-main');
+				editor.html($('##{cc.clientId}_textAjax').val());
+				editor.blur(function() {
+					  $('##{cc.clientId}_textAjax').val(editor.html());
+				});
+			</script>
+		</div>
+	</composite:implementation>
+</body>
+</html>

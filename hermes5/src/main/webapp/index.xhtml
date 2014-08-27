@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5"
+	template="/templates/template-default.xhtml">
+	
+	<ui:define name="top-menu">
+			<h5:top-menu id="top-menu" selected="" />
+	</ui:define>
+	
+	<ui:define name="content">
+		<div id="content-big">
+
+			<iframe id="welcome-frame" frameborder="0" scrolling="no" width="100%" height="#{welcomeController.welcomePageHeight}"
+				onload="scroll(0,0);"
+				src="#{welcomeController.welcomePageUrl}" />
+		</div>
+	</ui:define>
+</ui:composition>

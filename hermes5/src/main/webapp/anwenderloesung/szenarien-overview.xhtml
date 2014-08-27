@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5"
+	template="/templates/template-anwenderloesung.xhtml">
+
+	<ui:define name="menu">
+		<div id="navigation">
+			<h5:anwenderloesungmenu id="anwenderloesungmenu" selected="szenarien" />
+		</div>
+	</ui:define>
+	<ui:define name="content">
+		<div id="content-small">
+			<h:form id="szenarien-form">
+			<h5:messages/>
+				<div class="szenarioTitle">
+					<div class="h1"><h:outputText value="#{msg.anwenderloesung_szenarien}" /></div>
+					<h:outputText escape="false" value="#{msg.anwenderloesung_szenarien_beschreibung}" />
+				</div>
+
+				<ui:include src="szenario-download/wait-dialog.xhtml" />
+				<p:dialog id="download-selection-dialog" resizable="false"
+					modal="true" closable="false" width="450"
+					rendered="#{szenarienOverviewController.showSzenarioDownloadSelection}"
+					visible="#{szenarienOverviewController.showSzenarioDownloadSelection}">
+					<h5:locText styleClass="h3"
+						value="#{szenarienOverviewController.szenarioSelectedForDownload.presentationName}" />
+
+
+					<ui:include src="szenario-download/download-selection.xhtml" />
+					<div class="dialog-buttons-div">
+						<h:commandButton id="download-close" value="#{msg.button_close}"
+							type="submit" class="h5-button"
+							action="#{szenarienOverviewController.closeDownloadDialog}" />
+						<h:commandButton id="download-button" class="h5-button"
+							value="#{msg.al_wizard_weiter}"
+							onclick="waitDialog.show(); return true;" type="submit"
+							action="#{szenarienOverviewController.download}" />
+					</div>
+				</p:dialog>
+
+
+				<ui:repeat id="szenarien" value="#{szenarienOverviewController.szenarien}"
+					var="szenario" varStatus="varStatus">
+					<div
+						class="szenarien-overview-div #{varStatus.last ? 'last' : 'notlast'}">
+						<ui:include src="szenario-download/download-dialog.xhtml" />
+						
+						<a href="#{szenarienOverviewController.getSampleSzenarioLinkFor(szenario)}" target="_blank">
+							<h5:locText styleClass="h2" value="#{szenario.presentationName}" />
+						</a>
+						<p>
+							<h5:locText value="#{szenario.briefDescription}" />
+						</p>
+
+						<input type="button" id="show-sample-szenario-button" class="h5-button"
+							value="#{msg.al_button_show_sample_szenario}"
+							onClick="window.open('#{szenarienOverviewController.getSampleSzenarioLinkFor(szenario)}','_blank');" />
+						<h:commandButton id="download-projektleitfaden" class="h5-button"
+							value="#{msg.al_button_download_projektleitfaden}"  
+							action="#{szenarienOverviewController.downloadSzenarioClicked(szenario)}" />
+						<h:commandButton class="h5-button" id="szenario-anpassen"
+							action="#{szenarienOverviewController.costumizeSzenario(szenario)}"
+							value="#{msg.al_button_szenario_anpassen}" />
+						<br /> <br />
+					</div>
+					<br />
+				</ui:repeat>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

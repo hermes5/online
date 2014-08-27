@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5"
+	template="template-anwenderloesung.xhtml">
+
+	<ui:define name="menu">
+		<div id="navigation">
+			<h5:anwenderloesungmenu selected="szenarien" />
+		</div>
+	</ui:define>
+
+	<ui:define name="content">
+		<div id="content-small">
+			<h5:locText styleClass="h2 szenario-wizard-title" value="#{szenarioProjektdatenController.szenarioName}" /><br/>
+			<h:outputText value="#{msg.al_wizard_intro}" />
+			<br />
+			<br />
+			<ui:insert name="szenario-wizard-links">
+					<!-- szenario elemente headers -->
+			</ui:insert>
+			<div class="szenario-wizard">
+				<ui:insert name="szenario-wizard-content">
+					<!-- szenario wizard content -->
+				</ui:insert>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>

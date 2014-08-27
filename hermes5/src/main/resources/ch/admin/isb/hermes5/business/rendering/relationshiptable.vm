@@ -1,0 +1,37 @@
+
+#if($relationshipTableRecords && ! $relationshipTableRecords.empty && ! $onlySearchableContent )  
+	#if($app != 'print')<span class="h2">$l.text('al_doc_beziehungen_title')</span>#end
+	<table class="relationshiptable">
+		<tr>
+			<th class="moduleColumn">$l.text('al_doc_beziehungen_modul')</th>
+			<th class="taskColumn">$l.text('al_doc_beziehungen_aufgabe')</th>
+			<th class="responsibleTaskColumn">$l.text('al_doc_beziehungen_verantwortlichaufgabe')</th>
+			<th class="workProductColumn">$l.text('al_doc_beziehungen_ergebnis')</th>
+			<th class="responsibleWorkProductColumn">$l.text('al_doc_beziehungen_verantwortlichergebnis')</th>
+		</tr>
+		#foreach($row in $relationshipTableRecords)
+			#if($row.isEvenRow())
+				<tr class="even">
+			#else
+				<tr class="odd">
+			#end
+			<td>#if($row.renderModulAndAufgabe)#if($app != 'print')<a href="${urlprefix}${row.modul.name}.html">#end$l.localize($row.modul.presentationName)#if($app != 'print')</a>#end#end</td>
+			<td>#if($row.renderModulAndAufgabe)#if(! $row.aufgabe.hidden)#if($app != 'print')<a href="${urlprefix}${row.aufgabe.name}.html">#end$l.localize($row.aufgabe.presentationName)#if($app != 'print')</a>#end#end#end</td>
+			<td>#if($row.renderModulAndAufgabe)#if(! $row.aufgabe.hidden)#if($app != 'print')<a href="${urlprefix}${row.verantwortlichFuerAufgabe.name}.html">#end$l.localize($row.verantwortlichFuerAufgabe.presentationName)#if($app != 'print')</a>#end#end#end</td>
+			<td>#if($app != 'print')<a href="${urlprefix}${row.ergebnis.name}.html">#end$l.localize($row.ergebnis.presentationName)#if($app != 'print')</a>#end</td>
+			<td class="last">
+					#if(! $row.verantwortlichFuerErgebnis.empty) 
+							<span class="mitarbeitend">
+								#foreach($rolle in $row.verantwortlichFuerErgebnis)
+									#if($app != 'print')
+										<a href="${urlprefix}${rolle.name}.html">
+									#end
+										$l.localize($rolle.presentationName)#if($app != 'print')</a>#end#if($foreach.hasNext),#end 
+								#end
+							</span>
+					#end
+			</td>
+		</tr>
+		#end
+	</table>
+#end

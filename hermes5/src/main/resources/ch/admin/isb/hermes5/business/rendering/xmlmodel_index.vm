@@ -1,0 +1,11 @@
+<div class="h1">$l.text('al_xmlmodel_header')</div>
+
+<p>$l.text('al_xmlmodel_description')</p>
+
+<div class="h2">$l.text('al_xmlmodel_xml')</div>
+
+<a href="model_${lang}.xml">model_${lang}.xml</a>
+
+<div class="h2">$l.text('al_xmlmodel_xsd')</div>
+
+<a href="../schema/model_schema.xsd">model_schema.xsd</a>

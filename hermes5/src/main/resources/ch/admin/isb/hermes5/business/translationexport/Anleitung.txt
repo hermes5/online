@@ -1,0 +1,67 @@
+========================================================================================================
+ANLEITUNG ZUR ÜBERSETZUNG
+========================================================================================================
+
+Grundsätzlich gibt es drei verschiedene Elemente die übersetzt werden müssen: Textelemente, Bilder 
+und Vorlagen. Alle Elemente werden in einem Zip File exportiert und wieder importiert.
+
+Wichtig: 
+Übersetzungen können immer nur zu dem Model importiert werden, zu dem sie auch exportiert wurden.
+
+Alle importierten Elemente werden von der Applikation mit Status "freigegeben" gespeichert. Es wird
+nicht geprüft, ob diese tatsächlich übersetzt wurden oder nicht. Dies bedeutet, dass allfällig noch
+nicht übersetzte Textelemente, Bilder oder Vorlagen vor dem Upload aus dem Zip File entfernt werden
+müssen, um keine falschen Status herbeizuführen.
+
+
+--------------------------------------------------------------------------------------------------------
+Textelemente
+--------------------------------------------------------------------------------------------------------
+
+(1) Export 
+
+Textelemente werden im Ordner Textelemente exportiert. Darin findet sich für jeden Type (z.b. 
+Rollen) ein eigener Unterordner in dem für jedes Textelement eine Datei in der Ursprungssprache 
+Deutsch und eines für jede gewählte Zielsprache. Falls schon bestehende Elemente aus früheren
+Version übernommen werden konnten sind diese in den Dokumenten der Zielsprache enthalten. Ansonsten
+sind diese Dokumente mit den deutschen Texten gefüllt, die übersetzt werden müssen.
+
+(2) Übersetzung
+
+(3) Import
+
+
+--------------------------------------------------------------------------------------------------------
+Bilder
+--------------------------------------------------------------------------------------------------------
+
+(1) Export 
+
+Bilder werden im Order Bilder exportiert. Darin befindet sich für jedes Bild ein eigener Unterordner
+(z.B. hermes_core_guidances_supportingmaterials_resources_H5_Masterfolien_jpg). Der Name dieses 
+Unterordners darf nicht geändert werden, da er der Zuordnung der Bilder dient. Darin befindet sich für 
+jede Sprache (incl. Deutsch) ein Ordner mit dem entsprechenden Bild. Falls ein Bild noch nicht übersetzt 
+wurde, wird das deutsche Bild auch in die anderen Ordner platziert. Der Name des Bildes darf beim 
+Übersetzen nicht geändert werden.
+
+(2) Übersetzung 
+
+(3) Import
+
+
+--------------------------------------------------------------------------------------------------------
+Vorlagen
+--------------------------------------------------------------------------------------------------------
+
+(1) Export
+
+Vorlagen werden im Order Vorlagen exportiert. Darin befindet sich für jede Vorlage ein eigener 
+Unterordner. Der Name dieses Unterordners darf nicht geändert werden, 
+da er der Zuordnung der Vorlagen dient. Darin befindet sich für jede Sprache (incl. Deutsch) ein Ordner 
+mit der entsprechenden Vorlage. Falls eine Vorlage noch nicht übersetzt wurde, wird die deutsch Vorlage
+auch in die anderen Ordner platziert. Der Name der Vorlage kann beim Übersetzen angepasst werden 
+(Der Dateinamen darf keine Umlaute enthalten).
+
+(2) Übersetzung
+
+(3) Import

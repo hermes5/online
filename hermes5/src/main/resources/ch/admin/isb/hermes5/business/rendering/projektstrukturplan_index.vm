@@ -1,0 +1,14 @@
+<div class="h1">$l.text('al_workbreakdownstructure')</div>
+
+<div class="h2">$l.text('al_workbreakdownstructure_excel')</div>
+<a href="Workbreakdownstructure_${lang}.xlsx">Workbreakdownstructure_${lang}.xlsx</a>
+
+<div class="h2">$l.text('al_workbreakdownstructure_project')</div>
+#if($showMpxLink)<a href="Workbreakdownstructure_${lang}.mpx">Workbreakdownstructure_${lang}.mpx</a>
+<div class="al_msprojectdescription">$l.text('al_workbreakdownstructure_project_description_mpx')</div>
+#end
+
+#if($showXmlLink)
+<a href="Workbreakdownstructure_${lang}.xml">Workbreakdownstructure_${lang}.xml</a>
+<div class="al_msprojectdescription">$l.text('al_workbreakdownstructure_project_description_xml')</div>
+#end

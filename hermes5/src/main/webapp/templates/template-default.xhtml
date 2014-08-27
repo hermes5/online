@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	lang="#{localeController.language}">
+
+<h:head>
+	<title>HERMES</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" type="image/x-icon" href="/resources/images/favicon.ico" />
+	<h:outputText escape="false" value="#{googleAnalyticsController.snippet}" />
+
+	<script type="text/javascript">
+	function initPage() {
+	
+		if(window.location.hash == '#print') {
+			$(document).find("link[href*='print.css']").attr('media','all');
+		}
+	}
+	</script>
+	
+	<h:outputScript library="js" name="hyphenator.js" />
+</h:head>
+
+
+<body onload="initPage();" class="hyphenate">
+	<f:view encoding="UTF-8" locale="#{localeController.locale}">	
+		<h:outputStylesheet library="css" name="style.css" />
+		<h:outputStylesheet library="css" name="messages.css" />
+		<h:outputStylesheet library="css" name="tablestyle.css" />
+		<h:outputStylesheet library="css" name="menustyle.css" />
+		<h:outputStylesheet library="css" name="dialogstyle.css" />
+		<h:outputStylesheet library="css" name="print.css" media="print" />
+
+		<div id="visual-portal-wrapper">
+			<div id="web-header-div">
+				<div id="web-header-link"><a href="http://www.isb.admin.ch/?lang=#{localeController.language}" title="${msg.isb_header}" target="_blank" >${msg.isb_header}</a></div>
+				<div id="web-header-version" >HERMES5_VERSION</div>
+				<div id="web-header-logo"></div>
+			</div>
+			<div id="web-service-navigation-div">
+				<div id="web-service-content-div">
+					<ul>
+						<li><h:link id="home-link" value="#{msg.start_page}" outcome="/index" />
+						</li>
+						<li class="last"><h:outputLink id="contact-link"
+								value="http://www.isb.admin.ch/kontakt/index.html?lang=#{localeController.getLanguage()}">
+								<h:outputText value="#{msg.contact}" />
+							</h:outputLink></li>
+					</ul>
+				</div>
+			</div>
+			
+			<ui:insert id="top-menu" name="top-menu">
+				<!-- menu -->
+			</ui:insert>
+			
+			<div id="languages-selector">
+				<h:form id="lang-select-form">
+					<ul>
+						<!-- German -->
+						<ui:fragment rendered="#{not localeController.isLast('de')}">
+							<li>
+								<h:commandLink id="de"
+									           styleClass="#{(localeController.language == 'de') ? 'active' : 'inactive'}"
+									           action="#{localeController.setLanguage('de')}"
+									           value="Deutsch" />
+							</li>
+						</ui:fragment>
+						
+						<!-- French -->
+						<ui:fragment rendered="#{localeController.isEnabled('fr')}">
+							<li class="#{localeController.isLast('fr') ? 'last':''}">
+								<h:commandLink id="fr"
+								               styleClass="#{(localeController.language == 'fr') ? 'active' : 'inactive'}"
+									           action="#{localeController.setLanguage('fr')}"
+									           value="Français" />
+							</li>
+						</ui:fragment>
+						
+						<!-- Italian -->
+						<ui:fragment rendered="#{localeController.isEnabled('it')}">
+							<li class="#{localeController.isLast('it') ? 'last':''}">
+								<h:commandLink id="it"
+									           styleClass="#{(localeController.language == 'it') ? 'active' : 'inactive'}"
+									           action="#{localeController.setLanguage('it')}"
+									           value="Italiano" />
+							</li>
+						</ui:fragment>
+						
+						<!-- English -->
+						<ui:fragment rendered="#{localeController.isEnabled('en')}">
+							<li class="#{localeController.isLast('en') ? 'last':''}">
+								<h:commandLink id="en"
+									           styleClass="#{(localeController.language == 'en') ? 'active' : 'inactive'}"
+									           action="#{localeController.setLanguage('en')}"
+									           value="English" />
+							</li>
+						</ui:fragment>
+					</ul>
+
+				</h:form>
+			</div>
+			
+			<ui:insert id="menu" name="menu">
+				<!-- menu -->
+			</ui:insert>
+			
+			<ui:insert name="content">
+				<!-- content -->
+			</ui:insert>
+			
+			<ui:insert name="footer">
+				<!-- footer -->
+			</ui:insert>
+		</div>
+	</f:view>
+</body>
+</html>

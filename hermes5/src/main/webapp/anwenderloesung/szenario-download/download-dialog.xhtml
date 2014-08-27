@@ -1,0 +1,30 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5">
+
+
+	<p:dialog id="render-download-dialog" modal="true" closable="false"
+		width="450" resizable="false"
+		visible="#{szenarioDownloadController.renderDownloadDialog}">
+
+		<div>
+			<h:outputText value="#{msg.al_szenariodownload_downloadsuccess}" />
+		</div>
+		<br />
+
+		<div>
+			<br /> 
+		</div>
+		<div class="dialog-buttons-div">
+			<h:commandButton id="cancel-download-button" class="h5-button" value="#{msg.button_close}"
+				action="#{szenarioDownloadController.downloadDialogClose}" />
+			<h:commandButton id="download-file-button" value="#{msg.button_download}">
+				<p:fileDownload  value="#{szenarioDownloadController.file}" />
+			</h:commandButton>
+		</div>
+	</p:dialog>
+
+</f:view>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5"
+	template="/templates/template-szenario-wizard.xhtml">
+
+	<ui:define name="szenario-wizard-content">
+		<h5:szenarioWizardLinks selected="projektdaten" />
+
+		<h:form id="szenario-projektdaten-upload-logo-form"
+			enctype="multipart/form-data">
+
+			<p:dialog id="upload-logo" resizable="false" width="450" modal="true"
+				closable="false"
+				visible="#{szenarioProjektdatenController.visibleUploadLogoDialog}">
+				<h5:messages />
+				<h:outputText value="#{msg.al_logo_upload_dialog_header}" />
+				<br /><br />
+				
+				<div>
+					<p:fileUpload id="file-upload" mode="simple"
+						value="#{szenarioProjektdatenController.logo}" />
+				</div>
+				<br />
+				<h:outputText value="#{msg.al_logo_upload_dialog_detail}" />
+				<br />
+				<br />
+				<div class="dialog-buttons-div">
+					<h:commandButton value="#{msg.button_cancel}"
+						action="#{szenarioProjektdatenController.cancelLogoUpload}"
+						type="submit" />
+					<h:commandButton value="#{msg.button_uebernehmen}"
+						action="#{szenarioProjektdatenController.logoUpload}"
+						type="submit" />
+				</div>
+			</p:dialog>
+		</h:form>
+		<h:form id="szenario-projektdaten-form">
+			<h5:messages />
+			<div class="szenario-wizard-content-div">
+				<h:outputText value="#{msg.al_wizard_projektdaten_intro}" />
+				<br />
+				<br />
+				<table>
+					<tr>
+						<th><h:outputText value="#{msg.al_projektname}" /></th>
+						<th><h:inputText id="projektname"
+								value="#{szenarioProjektdatenController.szenarioUserData.projektname}" />
+						</th>
+					</tr>
+					<tr>
+						<th><h:outputText value="#{msg.al_firma1}" /></th>
+						<th><h:inputText id="firma1"
+								value="#{szenarioProjektdatenController.szenarioUserData.firma1}" />
+						</th>
+					</tr>
+					<tr>
+						<th><h:outputText value="#{msg.al_firma2}" /></th>
+						<th><h:inputText id="firma2"
+								value="#{szenarioProjektdatenController.szenarioUserData.firma2}" />
+						</th>
+					</tr>
+					<tr>
+						<th><h:outputText value="#{msg.al_auftraggeber}" /></th>
+						<th><h:inputText id="auftraggeber"
+								value="#{szenarioProjektdatenController.szenarioUserData.auftraggeber}" />
+						</th>
+					</tr>
+					<tr>
+						<th><h:outputText value="#{msg.al_projektleiter}" /></th>
+						<th><h:inputText  id="projektleiter"
+								value="#{szenarioProjektdatenController.szenarioUserData.projektleiter}" />
+						</th>
+					</tr>
+		<ui:remove>			<tr>
+						<th><h:outputText value="#{msg.al_projektnummer}" /></th>
+						<th><h:inputText  id="projektnummer"
+								value="#{szenarioProjektdatenController.szenarioUserData.projektnummer}" />
+						</th>
+					</tr>
+					</ui:remove>
+					<tr>
+						<th><h:outputText value="#{msg.al_logo}" /></th>
+						<th><h:commandButton id="logo-add" styleClass="b5_button"
+								value="#{msg.al_add_logo}"
+								rendered="#{not szenarioProjektdatenController.renderedLogo}"
+								action="#{szenarioProjektdatenController.showLogoUploadDialog}" />
+
+						</th>
+					</tr>
+					<tr>
+						<th></th>
+						<th><h:graphicImage
+								rendered="#{szenarioProjektdatenController.renderedLogo}"
+								value="#{szenarioProjektdatenController.logoUrl}" width="200" />
+							<br /> <h:commandButton id="logo-change" styleClass="h5_button"
+								value="#{msg.al_change_logo}"
+								rendered="#{szenarioProjektdatenController.renderedLogo}"
+								action="#{szenarioProjektdatenController.showLogoUploadDialog}" />
+							<h:commandButton id="logo-remove" styleClass="h5_button"
+								value="#{msg.al_delete_logo}"
+								rendered="#{szenarioProjektdatenController.renderedLogo}"
+								action="#{szenarioProjektdatenController.deleteLogo}" /></th>
+					</tr>
+				</table>
+			</div>
+			<h:commandButton id="back-button" value="#{msg.al_wizard_zurueck}"
+				class="h5-button" action="#{szenarioProjektdatenController.back}" />
+			<h:commandButton id="next-button" value="#{msg.al_wizard_weiter}"
+				class="h5-button" type="submit"
+				action="#{szenarioProjektdatenController.gotoElemente}" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,14 @@
+<div class="h1">$l.text('anwenderloesung_vorlagen')</div>
+
+#foreach($ergebnisLink in $templateNames)
+	#if($StringUtil.isNotBlank($ergebnisLink.name))
+		<div class="ergebnisLink"> 
+		#if($ergebnisLink.type == 'URL')
+			<span class="ico-extern"><img alt="$l.text('extern_ico_alt')" src="../../resources/ico_extern.gif"/></span> <a href="$ergebnisLink.url" target="_blank">$ergebnisLink.name</a>
+		#else
+			#set($wf = $WebFont.forFilename($ergebnisLink.url))
+			<span class="ico $wf.cssClass">$wf.unicode</span> <a href="$ergebnisLink.url">$ergebnisLink.name</a>
+		#end
+	</div> 
+	#end
+#end

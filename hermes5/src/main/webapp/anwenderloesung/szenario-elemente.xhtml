@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5" template="/templates/template-szenario-wizard.xhtml">
+
+	<ui:define name="szenario-wizard-content">
+		<script type="text/javascript">
+			function hyphenate(elementId) {
+				Hyphenator.config({
+                    selectorfunction: function(){
+                            return $(elementId).get();
+                    }
+            	});
+            	Hyphenator.run();
+			}
+		</script>
+	
+		<h5:szenarioWizardLinks selected="elementAuswaehlen" />
+
+		<h:form id="szenario-elemente-form">
+			<div class="szenario-wizard-content-div">
+				<h5:messages />
+				<h:outputText value="#{msg.al_wizard_elemente_intro}" />
+
+				<div id="methodElementsMain">
+					<!-- Phases -->
+					<h:panelGroup id="phases">
+						<div id="methodElementsPhases" class="alElementsRow">
+							<div id="methodElementsPhasesTitle" class="alElementsTitle">
+								<h:outputText value="1. #{msg.al_phasen}" />
+							</div>
+							<div id="methodElementsPhasesBody" class="alElementsBody">
+								<ui:repeat id="methodElementsPhasesBodyElements" var="phase" value="#{szenarioElementeController.phasen}"
+									varStatus="status">
+									<div class="alElement #{szenarioElementeController.highlightedPhase eq phase ? 'highlighted' : (status.index % 2 == 0 ? 'even' : 'odd')} enableHover">
+										<h:selectBooleanCheckbox id="phaseCheckbox" value="#{phase.selected}" disabled="#{phase.disabled}">
+											<f:ajax event="click" execute="@form" render="@form" listener="#{szenarioElementeController.setHighlightedPhase(phase)}" />
+										</h:selectBooleanCheckbox>
+										<h:commandLink id="selectPhase" action="#{szenarioElementeController.setHighlightedPhase(phase)}" styleClass="alElementLink">
+											<f:ajax execute="@form" render="@form" />
+											<h5:locText value="#{phase.name}" />
+										</h:commandLink>
+									</div>
+								</ui:repeat>
+							</div>
+						</div>
+					</h:panelGroup>
+
+					<!-- Modules -->
+					<h:panelGroup id="modules">
+						<div id="methodElementsModules" class="alElementsRow">
+							<div id="methodElementsModulesTitle" class="alElementsTitle whiteBorderLeft">
+								<h:outputText value="2. #{msg.al_module}" />
+							</div>
+							<div id="methodElementsModulesBody" class="alElementsBody">
+								<ui:repeat id="methodElementsModulesBodyElements" var="module" value="#{szenarioElementeController.modules}"
+									varStatus="status">
+									<div class="alElement #{szenarioElementeController.highlightedModule eq module ? 'highlighted' : (status.index % 2 == 0 ? 'even' : 'odd')} enableHover">
+										<h:selectBooleanCheckbox id="moduleCheckbox" value="#{module.selected}" disabled="#{module.disabled}">
+											<f:ajax event="click" execute="@form" render="_szenario-elemente-form_modules _szenario-elemente-form_tasks  _szenario-elemente-form_workProducts" listener="#{szenarioElementeController.setHighlightedModule(module)}" />
+										</h:selectBooleanCheckbox>
+										<h:commandLink id="selectModule" action="#{szenarioElementeController.setHighlightedModule(module)}" styleClass="alElementLink">
+											<f:ajax execute="@form" render="_szenario-elemente-form_modules _szenario-elemente-form_tasks  _szenario-elemente-form_workProducts" />
+											<h5:locText value="#{module.name}" />
+										</h:commandLink>
+									</div>
+								</ui:repeat>
+							</div>
+							<script type="text/javascript">
+								hyphenate('#methodElementsModules');
+							</script>
+						</div>
+					</h:panelGroup>
+
+					<!-- Tasks -->
+					<h:panelGroup id="tasks">
+						<div id="methodElementsTasks" class="alElementsRow">
+							<div id="methodElementsTasksTitle" class="alElementsTitle whiteBorderLeft">
+								<h:outputText value="3. #{msg.al_aufgaben}" />
+							</div>
+							<div id="methodElementsTasksBody" class="alElementsBody">
+								<ui:repeat id="methodElementsTasksBodyElements" var="task" value="#{szenarioElementeController.tasks}" varStatus="status">
+									<div class="alElement #{szenarioElementeController.highlightedTask eq task ? 'highlighted' : (status.index % 2 == 0 ? 'even' : 'odd')} enableHover">
+										<h:selectBooleanCheckbox id="taskCheckbox" value="#{task.selected}" disabled="#{task.disabled}">
+											<f:ajax event="click" execute="@form" render="_szenario-elemente-form_tasks _szenario-elemente-form_workProducts" listener="#{szenarioElementeController.setHighlightedTask(task)}" />
+										</h:selectBooleanCheckbox>
+										<h:commandLink id="selectTask" action="#{szenarioElementeController.setHighlightedTask(task)}" styleClass="alElementLink">
+											<f:ajax execute="@form" render="_szenario-elemente-form_tasks _szenario-elemente-form_workProducts" />
+											<h5:locText value="#{task.name}" />
+										</h:commandLink>
+									</div>
+								</ui:repeat>
+							</div>
+							<script type="text/javascript">
+								hyphenate('#methodElementsTasks');
+							</script>
+						</div>
+					</h:panelGroup>
+
+					<!-- Work Products -->
+					<h:panelGroup id="workProducts">
+						<div id="methodElementsWorkProducts" class="alElementsRow">
+							<div id="methodElementsWorkProductsTitle" class="alElementsTitle whiteBorderLeft">
+								<h:outputText value="4. #{msg.al_ergebnisse}" />
+							</div>
+							<div id="methodElementsWorkProductsBody" class="alElementsBody">
+								<ui:repeat id="methodElementsWorkProductsBodyElements" var="workProduct" value="#{szenarioElementeController.workProducts}" varStatus="status">
+									<div class="alElement #{status.index % 2 == 0 ? 'even' : 'odd'} enableHover">
+										<h:selectBooleanCheckbox id="workProductCheckbox" value="#{workProduct.selected}" disabled="#{workProduct.disabled}" />
+										<h5:locText value="#{workProduct.name}" styleClass="alElementLink" />
+									</div>
+								</ui:repeat>
+							</div>
+							<script type="text/javascript">
+								hyphenate('#methodElementsWorkProducts');
+							</script>
+						</div>
+					</h:panelGroup>
+				</div>
+			</div>
+			<div>
+				<h:commandButton id="back-button" value="#{msg.al_wizard_zurueck}" class="h5-button" type="submit"
+					action="#{szenarioElementeController.goBack}" />
+				<h:commandButton id="submit-button" value="#{msg.al_wizard_weiter}" class="h5-button" type="submit"
+					action="#{szenarioElementeController.gotoEigeneElemente}" />
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

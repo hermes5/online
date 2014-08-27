@@ -1,0 +1,348 @@
+.model-list-table-published-row.ui-state-highlight {
+	background: #FFFF99;
+	color: black;
+}
+
+#portal-columns {
+	width: 100% !important;
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: 100%;
+}
+
+#portal-column-one {
+	width: 210px !important;
+}
+
+#portal-column-one .visual-padding {
+	padding: 20px 0em 1em 0em;
+}
+
+#portal-column-content {
+	max-width: 750px;
+	padding: 0em;
+	margin-left: 210px;
+}
+
+#portal-column-content .visual-padding {
+	padding: 1em 1em 0 2em !important;
+	margin: 0em 0em 2em 0em;
+}
+
+#first-element111111 {
+	border: 1px solid grey;
+	border-bottom: 0px;
+}
+
+#first-element {
+	margin-left: 3px;
+}
+
+.element {
+	width: 160px;
+	border: 1px solid grey;
+	border-top: 0px;
+	font-weight: normal;
+}
+
+.text-top {
+	vertical-align: text-top;
+	background-color: white;
+	margin: 0;
+	padding: 0;
+	height: 100px;
+}
+
+.noheader.ui-datatable table thead {
+	display: none;
+}
+
+.szenario-eigene-elemente-result-table {
+	font-weight: normal;
+	width: 100%;
+}
+
+.szenario-elemente-headers,.szenario-elemente-tables {
+	width: 704px;
+	background-color: #ffffff;
+}
+.szenario-elemente-header {
+	width: 146px;
+	display: inline-block;
+	padding: 10px;
+	background-color: #B2C400;
+	border-right: 1px solid #FFFFFF;
+}
+.szenario-elemente-header-last {
+	width: 146px;
+	border-right: 1px solid #A8A8A8;
+	border-bottom: 1px solid #A8A8A8;
+	margin-bottom: -1px;
+}
+.szenario-elemente-table {
+	display: inline-block;
+	width: 168px;
+	margin-right: -4px;
+}
+.szenario-elemente-table-checkbox-column div.ui-dt-c {
+	padding: 0 !important;
+}
+
+.szenario-elemente-table-content-column {
+	width: 88%;
+	font-size: smaller;
+}
+
+.szenario-wizard-table div table tbody {
+	width: 100%;
+}
+
+.szenario-download-select-cell {
+	vertical-align: top;
+	
+}
+
+//************* SZENARIO EIGENE ELEMENTE ******************//
+
+.szenario-eigene-elemente-table-column {
+	width: 100%;
+	font-size: smaller;
+}
+.szenario-eigene-elemente-headers,.szenario-eigene-elemente-tables {
+	width: 515px;
+	background-color: #ffffff;
+}
+.szenario-eigene-elemente-header-last {
+	width: 150px;
+/*	border-right: 1px solid #A8A8A8; */
+}
+.szenario-eigene-elemente-header {
+	width: 232px;
+	display: inline-block;
+	padding: 10px;
+	border-top: 1px solid #A8A8A8;
+/*	border-left: 1px solid #A8A8A8; */
+}
+.szenario-eigene-elemente-table {
+	display: inline-block;
+	width: 255px;
+	margin-right: -5px;
+}
+.szenario-eigene-elemente-result-table{
+	display: inline-block;
+	width: 150px;
+	margin-right: -5px;
+}
+
+.szenario-eigene-custom-elemente-table-column {
+	width: 80%;
+	font-size: smaller;
+}
+.szenario-eigene-custom-elemente-table-column.selected {
+	font-weight: bold;
+}
+.szenario-eigene-custom-elemente-table-remove{
+	padding: 0 0.2em 0 0.2em !important;
+	width: 10%;
+}
+
+/* ONLINE PUBLICATION TABLE STYLES */
+
+.relationshiptable a:link, .relationshiptable a:visited {
+	text-decoration: none;
+	color: #000000;
+}
+
+.relationshiptable a:hover {
+	text-decoration: underline;
+}
+
+
+.title{
+	margin-bottom: 1em;
+}
+ 
+
+.overviewtable {
+	width: 100%;
+	border-spacing: 0px 3px;
+	table-layout: fixed;
+}
+
+.overviewtable a:link, .overviewtable a:visited {
+	color: #000000;
+	text-decoration: none;
+}
+
+.overviewtable a:hover {
+	text-decoration: underline;
+}
+
+.listtable {
+	width: 100%;
+	border-spacing: 0px 0px;
+}
+
+.listtable td{
+	font-size: 1em;
+	border-right: 1px solid #B2C400;
+	color: #555;
+	padding: 2px 5px 3px;
+}
+
+.listtable th{
+	background-color: #B2C400;
+	font-weight: bold;
+	padding: 7px 7px 8px;
+	text-align: left;
+	border-right: 1px solid #FFFFFF;
+	line-height: 1.3em;
+}
+
+.listtable a{
+	margin-right: .5em;
+	text-decoration: none;
+	color: #000;	
+}
+.listtable a:hover {
+	text-decoration: underline;
+}
+
+.listtable .checkbox {
+	text-align: center;
+}
+
+.relationshiptable {
+	padding-top: 1em;
+	width: 700px;
+	border-spacing: 0px 0px;
+	font-size: 0.92em;
+}
+
+.relationshiptable th.moduleColumn {
+	width: 15%;
+}
+
+.relationshiptable th.taskColumn {
+	width: 20%;
+}
+
+.relationshiptable th.responsibleTaskColumn {
+	width: 20%;
+}
+
+.relationshiptable th.workProductColumn {
+	width: 20%;
+}
+
+.relationshiptable th.responsibleWorkProductColumn {
+	width: 25%;
+}
+
+.relationshiptable td {
+	padding: 5px;
+	border-right: 1px solid #B2C400;
+	vertical-align: top;
+}
+.relationshiptable th {
+	padding: 5px;
+	background-color: #B2C400;
+	border-right: 1px solid #FFFFFF;
+	vertical-align: top;
+	text-align: left;
+}
+.relationshiptable .mitarbeitend {
+	display: block;
+}
+
+.aufgabe-purpose {
+	font-style: italic;
+}
+
+.overviewtable .cell-elements {
+	vertical-align:top;
+}
+
+.cell-elements-box{
+	display:block;
+	padding:5px;
+}
+
+.cell-elements {
+	border-top-color: white;
+	border-right: 1px solid #B2C400;
+	color: #555;
+	padding: 7px 5px 8px;
+}
+
+.cell-phase {
+	background-color: #B2C400;
+	font-weight: bold;
+	padding: 7px 7px 8px;
+	text-align: left;
+	border-right: 1px solid #FFFFFF;
+	line-height: 1.3em;
+}
+
+.cell-modul {
+	font-weight: bold;
+	padding: 7px 7px 8px;
+	text-align: left;
+	vertical-align: top;
+	border-right: 1px solid #FFFFFF;
+	line-height: 1.3em;
+	background-color: #B2C400;
+}
+
+.last, .relationshiptable .last, .listtable .last{
+	border-right: 1px solid #FFFFFF;
+}
+
+.cell-modul .cell-elements-box {
+	background-color: #B2C400; 
+}
+
+.cell-modul .cell-elements-box a:link, .cell-modul .cell-elements-box a:visited{
+	color: #000000; 
+}
+
+.cell-elements-box.milestone a{ 
+	color: #cc006b;
+}
+
+
+.relationshiptable .even, .overviewtable .even, .listtable .even{
+	background-color:#EEFFCC;
+}
+
+.relationshiptable .odd, .overviewtable .odd, .listtable odd{
+	background-color:#FFFFFF;
+}
+
+.ui-state-hover {
+	background-color: #B2C400 !important;
+	background: #B2C400 !important;
+}
+.ui-state-highlight {
+	background-color: #D8E180 !important;
+	background: #D8E180 !important;
+	color: #000000 !important;
+	text-shadow: 0px 0px 0px !important;
+	font-weight: bold;
+	
+}
+
+.ui-datatable-odd {
+	background-color: #EEFFCC;
+}
+.ui-datatable-even {
+	background-color: #FFFFFF;
+}
+
+.model-list-table-published-row {
+	background: #B2C400;
+}
+
+table .even ul li, table .odd ul li {
+	list-style-image: url(/resources/images/Bulletpoint_Hermes_bw.png);
+}

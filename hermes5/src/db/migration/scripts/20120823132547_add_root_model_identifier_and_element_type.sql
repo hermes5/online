@@ -1,0 +1,14 @@
+--// add root model identifier and model type
+-- Migration SQL that makes the change goes here.
+
+ALTER TABLE TRANSLATEABLE_TEXT ADD (
+	ROOT_ELEMENT_IDENTIFIER VARCHAR(255),
+	ELEMENT_TYPE VARCHAR(255)
+);
+
+
+--//@UNDO
+-- SQL to undo the change goes here.
+ALTER TABLE TRANSLATEABLE_TEXT DROP COLUMN ROOT_ELEMENT_IDENTIFIER;
+ALTER TABLE TRANSLATEABLE_TEXT DROP COLUMN  ELEMENT_TYPE;
+

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5"
+	template="/templates/template-webpublisher.xhtml">
+
+
+	<ui:define name="content">
+		<div id="content-big">
+		<h:form id="artifact-overview-form">
+			<script type="text/javascript">
+	$(document).ready(
+		function() {
+			$("#translation-import-export-menu").change(function() {
+	              var value = $(this).val();
+	              $("#model-import-export-menu").val('options');
+	              if (value == 'import') {
+	                  $("#artifact-overview-form_button-translation-import").click();
+	              }
+	              else if (value == 'export') {
+	                  $("#artifact-overview-form_button-translation-export").click();
+	              }
+	             })
+            	});
+      		</script>
+
+			<h:outputText styleClass="h1"
+				value="#{artifactOverviewController.model.title} (#{artifactOverviewController.model.version})" />
+
+			<h5:messages />
+			<select id="translation-import-export-menu"
+				class="h5-action-dropdown" name="selectionField">
+				<option value="options" selected="selected">Übersetzung</option>
+				<option value="import">importieren</option>
+				<option value="export">exportieren</option>
+			</select>
+
+			<h:commandButton id="button-publish" value="Publizieren" styleClass="h5-menu-button"
+				action="#{artifactOverviewController.publishModel}" />
+			
+			<h:link value="Zurück zu Modellübersicht" outcome="index" style="margin-left:1em"/>
+
+			<!-- HIDDEN BUTTONS -->
+			<h:commandButton style="display:none;" id="button-translation-import"
+				value=""
+				action="#{artifactOverviewController.gotoTranslationImport}" />
+			<h:commandButton style="display:none;" id="button-translation-export"
+				value=""
+				action="#{artifactOverviewController.gotoTranslationZipExport}" />
+
+			<br />
+
+			<br />
+			<p:dataTable id="artifact-overview-table"
+				styleClass="artifact-overview-table"
+				value="#{artifactOverviewController.translationEntities}" var="m"
+				width="800px" paginator="true" paginatorPosition="bottom" rows="20"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="10,20,50">
+				<p:column id="column-name" sortBy="#{m.name}" filterBy="#{m.name}"
+					filterMatchMode="contains">
+					<f:facet name="header">
+						<h:outputText value="Name" />
+					</f:facet>
+					<ui:fragment
+						rendered="#{m.type == 'DOCUMENT' or m.type == 'IMAGE'}">
+						<a href="#{artifactOverviewController.getLinkDeForDocument(m)}"><h:outputText
+								value="#{m.name}" /> </a>
+					</ui:fragment>
+					<ui:fragment rendered="#{m.type == 'TEXT_ELEMENT'}">
+						<a
+							href="#{artifactOverviewController.getLinkDeForModelElement(m)}"><h:outputText
+								value="#{m.name}" /> </a>
+					</ui:fragment>
+				</p:column>
+				<p:column id="type" sortBy="#{m.typeName}" filterBy="#{m.typeName}"
+					filterOptions="#{artifactOverviewController.filterOptionsType}"
+					filterMatchMode="exact">
+					<f:facet name="header">
+						Typ
+					</f:facet>
+					<h:outputText value="#{m.typeName}" />
+				</p:column>
+				<p:column id="status-fr" sortBy="#{m.statusFr.nameDe}"
+					filterBy="#{m.statusFr.nameDe}"
+					filterOptions="#{artifactOverviewController.filterOptionsStatus}"
+					filterMatchMode="exact">
+					<f:facet name="header">
+						Französisch
+					</f:facet>
+					<ui:fragment
+						rendered="#{m.type == 'DOCUMENT' and m.statusFr == 'FREIGEGEBEN'}">
+						<a href="#{artifactOverviewController.getLinkFr(m)}"><h:outputText
+								value="#{artifactOverviewController.getLinkNameFr(m)}" /> </a>
+					</ui:fragment>
+					<ui:fragment
+						rendered="#{m.type != 'DOCUMENT' or m.statusFr != 'FREIGEGEBEN'}">
+						<h:outputText value="#{m.statusFr.nameDe}" />
+					</ui:fragment>
+					<ui:fragment
+						rendered="#{artifactOverviewController.renderUploadArtifactLink(m)}">
+						<a
+							href="#{artifactOverviewController.uploadArtifactLink(m, 'fr')}">
+							<h:outputText styleClass="artifact-overview-upload-link"
+								value="upload" />
+						</a>
+					</ui:fragment>
+				</p:column>
+				<p:column id="status-it" sortBy="#{m.statusIt.nameDe}"
+					filterBy="#{m.statusIt.nameDe}"
+					filterOptions="#{artifactOverviewController.filterOptionsStatus}"
+					filterMatchMode="exact">
+					<f:facet name="header">
+						Italienisch
+					</f:facet>
+					<ui:fragment
+						rendered="#{m.type == 'DOCUMENT' and m.statusIt == 'FREIGEGEBEN'}">
+						<a href="#{artifactOverviewController.getLinkIt(m)}"><h:outputText
+								value="#{artifactOverviewController.getLinkNameIt(m)}" /> </a>
+					</ui:fragment>
+					<ui:fragment
+						rendered="#{m.type != 'DOCUMENT' or m.statusIt != 'FREIGEGEBEN'}">
+						<h:outputText value="#{m.statusIt.nameDe}" />
+					</ui:fragment>
+					<ui:fragment
+						rendered="#{artifactOverviewController.renderUploadArtifactLink(m)}">
+						<a
+							href="#{artifactOverviewController.uploadArtifactLink(m, 'it')}">
+							<h:outputText styleClass="artifact-overview-upload-link"
+								value="upload" />
+						</a>
+					</ui:fragment>
+				</p:column>
+				<p:column id="status-en" sortBy="#{m.statusEn.nameDe}"
+					filterBy="#{m.statusEn.nameDe}"
+					filterOptions="#{artifactOverviewController.filterOptionsStatus}"
+					filterMatchMode="exact">
+					<f:facet name="header">
+						Englisch
+					</f:facet>
+					<ui:fragment
+						rendered="#{m.type == 'DOCUMENT' and m.statusEn == 'FREIGEGEBEN'}">
+						<a href="#{artifactOverviewController.getLinkEn(m)}"><h:outputText
+								value="#{artifactOverviewController.getLinkNameEn(m)}" /> </a>
+					</ui:fragment>
+					<ui:fragment
+						rendered="#{m.type != 'DOCUMENT' or m.statusEn != 'FREIGEGEBEN'}">
+						<h:outputText value="#{m.statusEn.nameDe}" />
+					</ui:fragment>
+					<ui:fragment
+						rendered="#{artifactOverviewController.renderUploadArtifactLink(m)}">
+						<a
+							href="#{artifactOverviewController.uploadArtifactLink(m, 'en')}">
+							<h:outputText styleClass="artifact-overview-upload-link"
+								value="upload" />
+						</a>
+					</ui:fragment>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

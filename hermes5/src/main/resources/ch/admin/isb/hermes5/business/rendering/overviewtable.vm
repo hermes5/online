@@ -1,0 +1,23 @@
+#if($t.containsCellsInBody)
+	<table class="overviewtable">
+	#foreach($row in $t.rows) 
+		<tr class="$row.styleClass">	
+			#foreach($cell in $row.cells)
+				<td class="$cell.styleClass">
+					#foreach($element in $cell.elements) 
+						#if($row.styleClass == "header-row")
+							<span class="cell-elements-header-box">$l.localize($element.presentationName)</span>
+						#else
+							#if($element.milestone)
+								<span class="cell-elements-box milestone"><a href="${urlprefix}${element.name}.html">$l.localize($element.presentationName)</a></span>
+							#else
+								<span class="cell-elements-box"><a href="${urlprefix}${element.name}.html">$l.localize($element.presentationName)</a></span>
+							#end
+						#end
+					#end
+				</td>
+			#end
+		</tr>
+	#end
+	</table>
+#end

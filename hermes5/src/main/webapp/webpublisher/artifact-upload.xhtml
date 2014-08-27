@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/templates/template-webpublisher.xhtml">
+
+
+	<ui:define name="content">
+		<div id="content-big">
+		<h5:messages />
+		<h:form id="artifact-upload" enctype="multipart/form-data">
+			<p:confirmDialog id="successDialog"
+				message="File erfolgreich hinzugefügt."
+				visible="#{artifactUploadController.renderSuccessDialog}" header=""
+				severity="info" closable="false" widgetVar="sd">
+				<h:commandButton value="Schliessen"
+					action="#{artifactUploadController.confirmSuccessDialog}"
+					type="submit" />
+			</p:confirmDialog>
+
+			<h1>
+				Dokument/Bild hochladen
+			</h1>
+			<div>
+				<p:fileUpload id="file-upload"
+					value="#{artifactUploadController.uploadedFile}" mode="simple" />
+			</div>
+
+			<div>
+				<h:button id="cancel-button" value="Zurück"
+					type="submit" outcome="#{artifactUploadController.backIdentifier}" />
+				<h:commandButton id="upload-button"
+					value="Hochladen" type="submit"
+					action="#{artifactUploadController.handleFileUpload}" />
+
+			</div>
+		</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

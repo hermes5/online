@@ -1,0 +1,22 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5">
+
+
+	<div id="web-footer">
+		<div id="web-footer-text">
+			<h:outputText value="#{msg.footer_text}" />
+		</div>
+		<h:outputLink
+			value="http://www.isb.admin.ch/kontakt/index.html?lang=#{localeController.getLanguage()}">
+			<h:outputText value="#{msg.contact}" />
+		</h:outputLink>
+		<h:outputText value=" | " />
+		<h:outputLink value="http://www.disclaimer.admin.ch/index.html">
+			<h:outputText value="#{msg.rechtliches}" />
+		</h:outputLink>
+	</div>
+
+</f:view>

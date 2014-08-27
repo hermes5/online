@@ -1,0 +1,15 @@
+<div id="frame-content">
+
+#if( ! $onlySearchableContent )
+	#parse( "ch/admin/isb/hermes5/business/rendering/menu.vm" )
+
+
+<div id="content-small">
+<div class="webTopContentPrint">
+	<div class="webInfoServiceDiv">
+		<a href="#print" class="webServiceLink" target="_blank" title="$l.text('link_zurDruckversion')" rel="nofollow">$l.text('link_zurDruckversion')</a>
+	</div>
+</div>
+
+<span class="printDruckenSchliesen"><a href="javascript:window.print()" class="webServiceLink hideFromPrint">$l.text('link_drucken')</a>  |  <a href="javascript:window.close()" class="webServiceLink hideFromPrint">$l.text('link_schliessen')</a></span>
+#end

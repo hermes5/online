@@ -1,0 +1,42 @@
+<table class="aufgaben_overview_table listtable">
+	<tr>
+		<th>$l.text('h5_table_aufgabe_uebersicht_header_modul')</th> 
+		<th>$l.text('h5_table_aufgabe_uebersicht_header_aufgabe')</th> 
+		<th>$l.text('h5_table_aufgabe_uebersicht_header_anwender')</th> 
+		<th>$l.text('h5_table_aufgabe_uebersicht_header_ersteller')</th>
+		<th>$l.text('h5_table_aufgabe_uebersicht_header_betreiber')</th>
+	</tr> 
+	#foreach($aufgabe in $aufgaben)
+		
+			<tr class="$aufgabe.rowClass">
+				<td>
+					#if(! $aufgabe.modul.cleared)
+						<a href="${urlprefix}$aufgabe.modul.modulLink">
+							$aufgabe.modul.modul
+						</a>
+					#end
+                </td>
+				<td>
+					<a href="${urlprefix}$aufgabe.link">
+					 $aufgabe.aufgabe
+					</a>
+                </td>
+				 <td class="checkbox">
+					#if($aufgabe.anwender)
+						$x
+					#end
+                </td>
+				 <td class="checkbox">
+					#if($aufgabe.ersteller)
+						$x
+					#end
+                </td>
+				 <td class="checkbox last">
+					#if($aufgabe.betreiber)
+						$x
+					#end
+                </td>
+            </tr>
+	#end
+
+</table>

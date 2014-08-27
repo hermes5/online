@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5" template="/templates/template-szenario-wizard.xhtml">
+
+	<ui:define name="szenario-wizard-content">
+		<h5:szenarioWizardLinks selected="eigeneElemente" />
+
+		<h:form id="szenario-eigene-elemente-upload-vorlage-form" enctype="multipart/form-data">
+			<p:dialog id="upload-vorlage" resizable="false" width="450" modal="true" closable="false"
+				visible="#{szenarioEigeneElementeController.visibleUploadVorlageDialog}">
+
+				<div id="customElementsFileUpload">
+					<h5:messages />
+
+					<span class="descriptionText"><h:outputText value="#{msg.al_vorlage_upload_dialog_header}" /></span>
+
+					<div id="fileUploader">
+						<p:fileUpload id="file-upload" mode="simple" value="#{szenarioEigeneElementeController.customTemplate}" />
+					</div>
+
+					<div id="controls" class="dialog-buttons-div">
+						<h:commandButton value="#{msg.button_cancel}" action="#{szenarioEigeneElementeController.cancelVorlageUpload}">
+							<f:ajax execute="@form" render="@form" />
+						</h:commandButton>
+
+						<h:commandButton value="#{msg.button_uebernehmen}" action="#{szenarioEigeneElementeController.vorlageUpload}"
+							type="submit" />
+					</div>
+				</div>
+			</p:dialog>
+		</h:form>
+
+		<h:form id="eigene-elemente-form">
+			<div class="szenario-wizard-content-div">
+				<h5:messages />
+				<h:outputText value="#{msg.al_wizard_eigene_elemente_intro}" />
+
+				<div id="customElementsMain" class="donthyphenate">
+					<!-- Modules -->
+					<div id="customElementsModules" class="alElementsRow">
+						<div id="customElementsModulesTitle" class="alElementsTitle">
+							<h:outputText value="1. #{msg.al_module}" />
+						</div>
+
+						<div id="customElementsModulesBody" class="alElementsBody">
+							<ui:repeat var="module" value="#{szenarioEigeneElementeController.customModules}" varStatus="status">
+								<div
+									class="alElement #{szenarioEigeneElementeController.highlightedModule eq module ? 'highlighted' : (status.index % 2 == 0 ? 'even' : 'odd')} enableHover">
+									<h:commandLink action="#{szenarioEigeneElementeController.deleteCustomModule(module)}">
+										<span class="icon-trash" title="#{msg.al_modul_loeschen_tooltip}">&#58880;</span>
+										<f:ajax execute="@form" render="@form" />
+									</h:commandLink>
+
+									<h:inputText id="changeModuleName" class="changeNameInput" autocomplete="off"
+										value="#{szenarioEigeneElementeController.highlightedModule.name}"
+										rendered="#{szenarioEigeneElementeController.highlightedModule eq module}" />
+
+									<h:commandLink action="#{szenarioEigeneElementeController.changeHighlightedModule(module)}"
+										value="#{module.name}" rendered="#{szenarioEigeneElementeController.highlightedModule ne module}"
+										styleClass="alElementLink">
+										<f:ajax execute="@form" render="@form" />
+									</h:commandLink>
+								</div>
+							</ui:repeat>
+
+							<div class="customElementButton">
+								<h:commandButton id="addModuleButton" styleClass="h5-button middle" value="#{msg.al_modul_hinzufuegen}"
+									action="#{szenarioEigeneElementeController.addCustomModule}"
+									disabled="#{szenarioEigeneElementeController.isDisabledAddModuleButton()}">
+									<f:ajax execute="@form" render="@form" />
+								</h:commandButton>
+							</div>
+						</div>
+					</div>
+
+					<!-- Work Products -->
+					<div id="customElementsWorkproducts" class="alElementsRow">
+						<div id="customElementsWorkproductsTitle" class="alElementsTitle whiteBorderLeft">
+							<h:outputText value="2. #{msg.al_ergebnisse}" />
+						</div>
+						<div id="customElementsWorkproductsBody" class="alElementsBody">
+							<ui:repeat var="workProduct" value="#{szenarioEigeneElementeController.customViewWorkProducts}"
+								varStatus="status">
+								<div
+									class="alElement #{szenarioEigeneElementeController.highlightedWorkProduct eq workProduct ? 'highlighted' : (status.index % 2 == 0 ? 'even' : 'odd')} enableHover">
+									<h:commandLink action="#{szenarioEigeneElementeController.deleteCustomViewWorkProduct(workProduct)}">
+										<span class="icon-trash" title="#{msg.al_ergebnis_loeschen_tooltip}">&#58880;</span>
+										<f:ajax execute="@form" render="@form" />
+									</h:commandLink>
+
+									<h:inputText id="changeWorkProductName" class="changeNameInput" autocomplete="off"
+										value="#{szenarioEigeneElementeController.highlightedWorkProduct.presentationName}"
+										rendered="#{szenarioEigeneElementeController.highlightedWorkProduct eq workProduct}" />
+
+									<h:commandLink action="#{szenarioEigeneElementeController.changeHighlightedWorkProduct(workProduct)}"
+										value="#{workProduct.presentationName}"
+										rendered="#{szenarioEigeneElementeController.highlightedWorkProduct ne workProduct}"
+										styleClass="alElementLink">
+										<f:ajax execute="@form" render="@form" />
+									</h:commandLink>
+								</div>
+							</ui:repeat>
+
+							<h:panelGroup rendered="#{szenarioEigeneElementeController.highlightedModule ne null}">
+								<div class="customElementButton">
+									<h:commandButton id="addWorkProductButton" styleClass="h5-button middle" value="#{msg.al_ergebnis_hinzufuegen}"
+										action="#{szenarioEigeneElementeController.addCustomViewWorkProduct}"
+										disabled="#{szenarioEigeneElementeController.isDisabledAddWorkProductButton()}">
+										<f:ajax execute="@form" render="@form" />
+									</h:commandButton>
+								</div>
+							</h:panelGroup>
+						</div>
+					</div>
+
+					<!-- Details -->
+					<div id="customElementsDescription" class="alElementsRow">
+						<div id="customElementsDescriptionTitle" class="alElementsTitle whiteBorderLeft">
+							<h:outputText value="3. #{msg.al_eigene_elemente_beschreibung}" />
+						</div>
+						<div id="customElementsDescriptionBody" class="alElementsBody">
+							<h:panelGroup rendered="#{szenarioEigeneElementeController.highlightedWorkProduct ne null}">
+								<!-- Template -->
+								<div class="customElementsDescriptionSection">
+									<div class="customElementsDescriptionTitle">
+										<h:outputText value="#{msg.al_eigene_elemente_vorlage}:" />
+									</div>
+									<div class="customElementsDescriptionContent">
+										<h:commandButton id="addTemplateButton" styleClass="h5-button"
+											value="#{szenarioEigeneElementeController.workProductHasTemplate() ? msg.al_change_vorlage : msg.al_add_vorlage}"
+											action="#{szenarioEigeneElementeController.showVorlageUploadDialog}">
+											<f:ajax execute="@form" render="@form _szenario-eigene-elemente-upload-vorlage-form" />
+										</h:commandButton>
+										<h:panelGroup rendered="#{szenarioEigeneElementeController.workProductHasTemplate()}">
+											<div class="uploadedTemplate">
+												<h:commandLink action="#{szenarioEigeneElementeController.deleteVorlage}">
+													<span class="icon-trash" title="#{msg.al_vorlage_loeschen_tooltip}">&#58880;</span>
+													<f:ajax execute="@form" render="@form" />
+												</h:commandLink>
+
+												<span class="#{szenarioEigeneElementeController.getWebFontForTemplate().cssClass}">#{szenarioEigeneElementeController.getWebFontForTemplate().getUnicode()}</span>
+												<h:outputText styleClass="filename" value="#{szenarioEigeneElementeController.getShortTemplateFilename()}" />
+											</div>
+										</h:panelGroup>
+									</div>
+								</div>
+
+								<!-- Description -->
+								<div class="customElementsDescriptionSection">
+									<div class="customElementsDescriptionTitle">
+										<h:outputText value="#{msg.al_eigene_elemente_beschreibung}:" />
+									</div>
+									<div id="workProductDescription" class="customElementsDescriptionContent">
+										<h5:richInputText
+											id="workProductDescriptionEditor"
+											value="#{szenarioEigeneElementeController.highlightedWorkProduct.briefDescription}"
+											buttons="'bold','italic','underline','ol','ul','link','unlink'" />
+									</div>
+								</div>
+
+								<!-- Phases -->
+								<div class="customElementsDescriptionSection">
+									<div class="customElementsDescriptionTitle">
+										<h:outputText value="#{msg.al_phasen}:" />
+									</div>
+									<div class="customElementsDescriptionContent">
+										<ui:repeat id="phases" var="phase" value="#{szenarioEigeneElementeController.highlightedWorkProduct.phases}">
+											<div class="selectableItem">
+												<h:selectBooleanCheckbox id="phase" value="#{phase.selected}" />
+												<h:outputLabel for="phase">
+													<h5:locText value="#{phase.data.name}" />
+												</h:outputLabel>
+											</div>
+										</ui:repeat>
+									</div>
+								</div>
+
+								<!-- Roles -->
+								<div class="customElementsDescriptionSection">
+									<div class="customElementsDescriptionTitle">
+										<h:outputText value="#{msg.al_verantwortliche_rolle}:" />
+									</div>
+									<div class="customElementsDescriptionContent">
+										<ui:repeat id="roles" var="role" value="#{szenarioEigeneElementeController.highlightedWorkProduct.roles}">
+											<div class="selectableItem">
+												<h:selectBooleanCheckbox id="role" value="#{role.selected}" />
+												<h:outputLabel for="role">
+													<h5:locText value="#{role.data.presentationName}" />
+												</h:outputLabel>
+											</div>
+										</ui:repeat>
+									</div>
+								</div>
+							</h:panelGroup>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h:commandButton id="back-button" value="#{msg.al_wizard_zurueck}" class="h5-button" type="submit"
+				action="#{szenarioEigeneElementeController.goBack}" />
+			<h:commandButton id="submit-button" value="#{msg.al_wizard_weiter}" class="h5-button" type="submit"
+				action="#{szenarioEigeneElementeController.gotoDownload}" />
+		</h:form>
+	</ui:define>
+</ui:composition>

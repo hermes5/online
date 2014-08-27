@@ -1,0 +1,29 @@
+#if($menu && ! $menu.empty )
+	<div id="navigation" class="donthyphenate">
+	<ul>
+		#foreach( $menuItem1 in $menu )
+		 	#set($divClass1 = "#if($menuItem1.selected)navi-ebene1-div selected#{else}#if($menuItem1.active)navi-ebene1-div active#{else}navi-ebene1-div#end#end")
+			<li class="h5_menuitem"><div class="$divClass1"><div class="navi-ebene1-text-div"><a href="${urlprefix}${menuItem1.link}" class="navi-ebene1">$l.localize($menuItem1.name)</a></div></div>
+			#if( ! $menuItem1.subItems.empty) 
+				<ul>
+					#foreach( $menuItem2 in $menuItem1.subItems )
+					 	#set($divClass2 = "#if($menuItem2.selected)navi-ebene2-div selected#{else}#if($menuItem2.active)navi-ebene2-div active#{else}navi-ebene2-div#end#end")
+						<li class="h5_menuitem"><div class="$divClass2"><div class="navi-ebene2-text-div"><a href="${urlprefix}${menuItem2.link}" class="navi-ebene2">$l.localize($menuItem2.name)</a></div></div>
+						#if( ! $menuItem2.subItems.empty) 
+							<ul>
+								#foreach( $menuItem3 in $menuItem2.subItems )
+								 	#set($divClass3 = "#if($menuItem3.selected)navi-ebene3-div selected#{else}#if($menuItem3.active)navi-ebene3-div active#{else}navi-ebene3-div#end#end")
+									<li class="h5_menuitem"><div class="$divClass3"><div class="navi-ebene3-text-div"><a href="${urlprefix}${menuItem3.link}" class="navi-ebene3">$l.localize($menuItem3.name)</a></div></div>
+									</li>
+								#end
+							</ul>
+						#end
+						</li>
+					#end
+				</ul>
+			#end
+			</li>
+		#end
+	</ul>
+	</div>
+#end

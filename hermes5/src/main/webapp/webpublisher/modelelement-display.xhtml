@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/templates/template-webpublisher.xhtml">
+
+
+	<ui:define name="content">
+		<div id="content-big">
+		<h5:messages />
+		<h:form id="modelelement">
+			<h:outputText styleClass="h2" value="#{modelElementDisplayController.title}"/>
+			<h:link value="Zurück zu Artifakt-Übersicht" outcome="artifact-overview" style="margin-left:2em"/>
+			<div class="model-element-display-lang">
+				<h:commandLink value="Französisch" action="#{modelElementDisplayController.setLang('fr')}"/>
+				<h:outputText value=" | "/>
+				<h:commandLink value="Italienisch" action="#{modelElementDisplayController.setLang('it')}"/>
+				<h:outputText value=" | "/>
+				<h:commandLink value="Englisch" action="#{modelElementDisplayController.setLang('en')}"/>
+				<br/><br/>
+				<h:commandButton value="Löschen" action="#{modelElementDisplayController.deleteTexts()}"/>
+			</div>
+			<br/><br/><br/><br/>
+			<h:dataTable id="modelelement-table" var="row" rowClasses="model-element-row" 
+			columnClasses="model-element-column1,model-element-column2,model-element-column3"
+				value="#{modelElementDisplayController.texts}">
+				<h:column id="de">
+					<div>
+						<h:outputText styleClass="h3" value="#{row.data.textIdentifier}"/>
+					</div>
+					<h:outputText value="#{modelElementDisplayController.getTextDe(row.data)}" escape="false"/>
+				</h:column>
+				<h:column id="checkbox">
+					<h3></h3>
+					<h:selectBooleanCheckbox id="table-row-checkbox" value="#{row.selected}"/>
+				</h:column>
+				<h:column id="other">
+					<h3></h3>
+					<h:outputText value="#{modelElementDisplayController.getOtherText(row.data)}" escape="false"/>
+				</h:column>
+			</h:dataTable>
+
+		</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/templates/template-webpublisher.xhtml">
+
+
+	<ui:define name="content">
+		<div id="content-big">
+			<h5:messages />
+			<h:form id="print-xml-download" enctype="multipart/form-data">
+				<p:dialog id="render-download-dialog" modal="true" closable="false"
+					width="450"
+					visible="#{printXmlDownloadController.renderDownloadDialog}">
+
+					<div>
+						Das Druck-XML wurde erfolgreich erzeugt und kann heruntergeladen werden.
+					</div>
+					<br />
+					<div>
+						<p:commandLink value="#{printXmlDownloadController.filename}"
+							ajax="false">
+							<p:fileDownload value="#{printXmlDownloadController.file}" />
+						</p:commandLink>
+						<br /> <br />
+
+					</div>
+					<h:commandButton styleClass="h5button" value="Schliessen"
+						action="#{printXmlDownloadController.downloadDialogClose}" />
+				</p:dialog>
+
+				<h1>
+					Druck-XML Exportieren
+				</h1>
+
+
+
+				<h:panelGrid columns="2" width="30%">
+					<h:outputText styleClass="h3" value="Sprache:" />
+					<h:panelGroup />
+
+					<h:selectOneRadio layout="pageDirection"
+						value="#{printXmlDownloadController.selectedLanguage}">
+						<f:selectItem id="checkbox-de" itemLabel="de" itemValue="de" />
+						<f:selectItem id="checkbox-fr" itemLabel="fr" itemValue="fr" />
+						<f:selectItem id="checkbox-it" itemLabel="it" itemValue="it" />
+						<f:selectItem id="checkbox-en" itemLabel="en" itemValue="en" />
+					</h:selectOneRadio>
+					<h:panelGroup />
+				</h:panelGrid>
+
+					<h:button id="cancel-button" value="Zurück"
+						outcome="#{printXmlDownloadController.backIdentifier}" />
+					<h:commandButton value="XSD Schema herunterladen"
+						ajax="false">
+						<p:fileDownload value="#{printXmlDownloadController.schemaFile}" />
+					</h:commandButton>
+					<h:commandButton value="Exportieren starten"
+						action="#{printXmlDownloadController.triggerExport}" ajax="false">
+					</h:commandButton>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

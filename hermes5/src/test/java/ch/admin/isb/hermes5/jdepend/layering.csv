@@ -1,0 +1,6 @@
+-;ch.admin.isb.hermes5.business.*;ch.admin.isb.hermes5.presentation.*;ch.admin.isb.hermes5.persistence.*;ch.admin.isb.hermes5.domain.*;ch.admin.isb.hermes5.util.*
+ch.admin.isb.hermes5.business.*;-;no;yes;yes;yes
+ch.admin.isb.hermes5.presentation.*;yes;-;no;yes;yes
+ch.admin.isb.hermes5.persistence.*;no;no;-;yes;yes
+ch.admin.isb.hermes5.domain.*;no;no;no;-;yes
+ch.admin.isb.hermes5.util.*;no;no;no;no;-

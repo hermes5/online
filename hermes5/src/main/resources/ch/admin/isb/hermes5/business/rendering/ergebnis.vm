@@ -1,0 +1,56 @@
+
+<div class="title">
+	<span class="h1">#if($titleKey)$l.text($titleKey): #end$l.localize($me.presentationName)</span>
+	#if($app == 'al') 
+		<a href="index.html">$l.text('al_doc_back_to_scenario')</a>
+	#end
+</div>
+
+#if($me.briefDescription && $StringUtil.isNotBlank($l.localize($me.briefDescription))) 
+	<p>$l.localize($me.briefDescription)</p>
+#end
+
+#if($me.purpose && $StringUtil.isNotBlank($l.localize($me.purpose))) 
+	<span class="h2">$l.text('h5_ergebnis_inhalt')</span>
+	<p>$l.localize($me.purpose)</p>
+#end
+
+
+
+#if(! ($me.templateAttachmentUrls.empty && $me.webAttachmentUrls.empty))
+	<span class="h2">$l.text('al_doc_ergebnis_vorlagen')</span>
+	<ul class="template-list">
+	#foreach($template in $me.templateAttachmentUrls)
+		<li>
+			#if($app == 'op')
+				#set($url = $l.documentUrl($template))
+				#set($wf = $WebFont.forFilename($StringUtil.getLinkName($url)))
+				<span class="$wf.cssClass">$wf.unicode</span> <a class="artifact-link" href="${contentprefix}$url" target="_blank">$StringUtil.getLinkName($url)</a>
+			#else 
+				#if( $me.class.simpleName == 'CustomErgebnis')
+					#set($wf = $WebFont.forFilename($StringUtil.getLinkName($template)))
+					<span class="ico $wf.cssClass">$wf.unicode</span> <a class="custom-artifact-link" href="${templateprefix}custom/$StringUtil.getLinkName($template)" target="_blank">$StringUtil.getLinkName($template)</a>
+				#else
+					#set($url = $l.documentUrl($template))
+					#set($wf = $WebFont.forFilename($StringUtil.getLinkName($url)))
+					<span class="ico $wf.cssClass">$wf.unicode</span> <a class="artifact-link" href="${templateprefix}$StringUtil.getLinkName($url)" target="_blank">$StringUtil.getLinkName($url)</a>
+				#end
+			#end
+		</li>
+	#end
+	#foreach($webUrl in $me.webAttachmentUrls)
+		<li>
+			#if($app == 'op')
+				<img alt="$l.text('extern_ico_alt')" src="../../resources/images/ico_extern.gif" class="ico-extern" />
+				$StringUtil.addTargetToHtmlLink($l.localize($webUrl))
+			#else
+				<span class="ico-extern"><img alt="$l.text('extern_ico_alt')" src="../../resources/ico_extern.gif"/></span>
+				$StringUtil.addTargetToHtmlLink($l.localize($webUrl))
+			#end
+		</li>
+	#end
+	</ul>
+#end
+
+
+#parse( "ch/admin/isb/hermes5/business/rendering/relationshiptable.vm" )

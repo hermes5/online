@@ -1,0 +1,42 @@
+<table class="ergebnisse_overview_table listtable">
+	<tr>
+		<th>$l.text('h5_table_ergebnis_uebersicht_header_modul')</th> 
+		<th>$l.text('h5_table_ergebnis_uebersicht_header_ergebnis')</th> 
+		<th>$l.text('h5_table_ergebnis_uebersicht_header_anwender')</th> 
+		<th>$l.text('h5_table_ergebnis_uebersicht_header_ersteller')</th>
+		<th>$l.text('h5_table_ergebnis_uebersicht_header_betreiber')</th>
+	</tr> 
+	#foreach($ergebnis in $ergebnisse)
+		
+			<tr class="$ergebnis.rowClass">
+				<td>
+					#if(! $ergebnis.modul.cleared)
+						<a href="${urlprefix}$ergebnis.modul.modulLink">
+							$ergebnis.modul.modul
+						</a>
+					#end
+                </td>
+				<td>
+					<a href="${urlprefix}$ergebnis.link">
+					 $ergebnis.ergebnis
+					</a>
+                </td>
+				 <td class="checkbox">
+					#if($ergebnis.anwender)
+						#if($ergebnis.required) $x_required #else $x #end
+					#end
+                </td>
+				  <td class="checkbox">
+					#if($ergebnis.ersteller)
+						#if($ergebnis.required) $x_required #else $x #end
+					#end
+                </td>
+				 <td class="checkbox last">
+					#if($ergebnis.betreiber)
+						#if($ergebnis.required) $x_required #else $x #end
+					#end
+                </td>
+            </tr>
+	#end
+
+</table>

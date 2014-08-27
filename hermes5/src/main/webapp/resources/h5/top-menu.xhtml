@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+</head>
+<body>
+	<composite:interface>
+		<composite:attribute name="selected" type="java.lang.String" />
+	</composite:interface>
+
+	<composite:implementation>
+		<div class="portal-globalnav-div donthyphenate">
+			<h:form id="search">
+				<ui:fragment rendered="#{cc.attrs.selected == 'onlinepublikation'}">
+					<span class="portal-globalnav-search">
+						<h:inputText id="search" value="#{searchController.searchString}" />
+						<p:watermark for="search" value="#{msg.search_input_placeholder}" />
+						<h:commandButton id="search-button"	value="#{msg.search_button}" class="h5-button search-button" action="#{searchController.search()}" />
+					</span>
+				</ui:fragment>
+				
+				<ul id="portal-globalnav">
+
+					<li id="li-top-menu-onlinepublikation" class="top-menuitem"><h:link id="onlinepublikation"
+							class="#{cc.attrs.selected == 'onlinepublikation' ? 'selected' : 'notselected'}"
+							outcome="/onlinepublikation/index" value="#{msg.mainmenu_onlinepublikation}" /></li>
+					<li id="li-top-menu-anwenderloesung" class="top-menuitem"><a id="anwenderloesung"
+						class="#{cc.attrs.selected == 'anwenderloesung' ? 'selected' : 'notselected'}"
+						href="/anwenderloesung/szenarien-overview.xhtml"><h:outputText value="#{msg.mainmenu_anwenderloesung}" /></a></li>
+					<li class="top-menuitem"><a id="ueberhermes" href="#{topMenuController.ueberHermesUrl}" target="_blank"><h:outputText
+								value="#{msg.mainmenu_ueber_hermes}" /> </a></li>
+				</ul>
+			</h:form>
+		</div>
+	</composite:implementation>
+</body>
+</html>

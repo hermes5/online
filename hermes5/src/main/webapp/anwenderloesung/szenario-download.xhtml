@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5"
+	template="/templates/template-szenario-wizard.xhtml">
+
+	<ui:define name="szenario-wizard-content">
+		<h5:szenarioWizardLinks selected="download" />
+		<h:form>
+		<h5:messages/>
+			<div class="szenario-wizard-content-div">
+				<ui:include src="szenario-download/download-dialog.xhtml" />
+				<ui:include src="szenario-download/download-selection.xhtml" />
+				<ui:include src="szenario-download/wait-dialog.xhtml" />
+				<p:dialog id="publishOnlineDialog" modal="true" closable="false"
+					width="450" resizable="false"
+					visible="#{szenarioDownloadController.renderPublishedOnlineDialog}">
+
+					<div>
+						<h:outputText value="#{msg.al_szenariodownload_publishsuccess}" />
+					</div>
+					<br />
+					<a href="#{szenarioDownloadController.publishedUrl}"
+						target="_blank"> <h:outputText
+							value="#{szenarioDownloadController.publishedUrl}" />
+					</a>
+<br /> <br />
+					<div>
+						<h:outputText
+							value="#{msg.al_szenariodownload_publishsuccess_download}" />
+					</div>
+					<div>
+<br/>
+						
+
+					</div>
+					<div class="dialog-buttons-div">
+						<h:commandButton class="h5-button" value="#{msg.button_close}"
+							action="#{szenarioDownloadController.publishOnlineDialogClose}" />
+						<h:commandButton value="#{msg.button_download}" class="h5-button">
+							<p:fileDownload value="#{szenarioDownloadController.file}" />
+						</h:commandButton>
+					</div>
+				</p:dialog>
+
+				<br />
+				<h:outputText
+					value="#{msg.al_wizard_download_or_online_description}" />
+				<br />
+			</div>
+			<h:commandButton id="back-button" value="#{msg.al_wizard_zurueck}"
+				class="h5-button" type="submit"
+				action="#{szenarioDownloadController.goBack}" />
+			<h:commandButton id="download-button" class="h5-button"
+				value="#{msg.al_wizard_download}"
+				onclick="waitDialog.show(); return true;" type="submit"
+				action="#{szenarioDownloadController.download}" />
+			<h:commandButton id="publish-online-button" class="h5-button"
+				value="#{msg.al_wizard_publish_online}"
+				onclick="waitDialog.show(); return true;" type="submit"
+				action="#{szenarioDownloadController.publishOnline}" />
+		</h:form>
+	</ui:define>
+</ui:composition>

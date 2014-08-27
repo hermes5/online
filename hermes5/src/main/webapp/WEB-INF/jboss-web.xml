@@ -1,0 +1,5 @@
+<jboss-web>
+  <!-- Pre-condition: <virtual-server name="default-host" enable-welcome-root="false"> -->
+  <context-root>/</context-root>
+  <security-domain>java:/jaas/webpublisher</security-domain>
+</jboss-web>

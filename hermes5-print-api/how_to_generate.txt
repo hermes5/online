@@ -1,0 +1,4 @@
+# Generate the sources in src/main/java with xjc (from JDK 6)
+# ----------------------------------------------------------------
+
+../thirdparty/jaxb-ri-2.2.6/bin/xjc.bat  -encoding UTF-8 -target 2.0 -classpath ../thirdparty/colletion-setter-injection/collection-setter-injector-0.5.0-1.jar -extension -Xcollection-setter-injector  -d src/main/java -p ch.admin.isb.hermes5.print.api src/main/resources/print_schema.xsd

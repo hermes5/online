@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+</head>
+<body>
+	<composite:interface>
+		<composite:attribute name="selected" type="java.lang.String" />
+	</composite:interface>
+	<composite:implementation>
+		<div class="szenario-wizard-links">
+			<div class="szenario-customization-nav-text #{cc.attrs.selected == 'projektdaten' ? 'selected' : 'notselected'}"
+				style="margin-left: 0px">
+				<h:outputText value="#{msg.al_link_projektdaten}" />
+			</div>
+			<div class="szenario-customization-nav-text">
+				<h:outputText value=">" />
+			</div>
+			<div class="szenario-customization-nav-text #{cc.attrs.selected == 'elementAuswaehlen' ? 'selected' : 'notselected'}">
+				<h:outputText value="#{msg.al_link_element_auswaehlen}" />
+			</div>
+			<div class="szenario-customization-nav-text ">
+				<h:outputText value=">" />
+			</div>
+			<div class="szenario-customization-nav-text #{cc.attrs.selected == 'eigeneElemente' ? 'selected' : 'notselected'}">
+				<h:outputText value="#{msg.al_link_eigene_elemente}" />
+			</div>
+			<div class="szenario-customization-nav-text">
+				<h:outputText value=">" />
+			</div>
+			<div class="szenario-customization-nav-text #{cc.attrs.selected == 'download' ? 'selected' : 'notselected'}">
+				<h:outputText value="#{msg.al_link_download}" />
+			</div>
+		</div>
+	</composite:implementation>
+</body>
+</html>

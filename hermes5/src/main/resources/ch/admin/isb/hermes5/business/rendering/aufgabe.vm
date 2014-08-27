@@ -1,0 +1,41 @@
+
+<div class="title">
+	<span class="h1 #if($me.milestone)milestone-title #end">
+		#if($titleKey)$l.text($titleKey): #end$l.localize($me.presentationName)
+	</span>
+	#if($app == 'al') 
+		<a href="index.html">$l.text('al_doc_back_to_scenario')</a>
+	#end
+</div>
+
+#if($me.purpose && $StringUtil.isNotBlank($l.localize($me.purpose))) 
+	<div class="aufgabe-purpose">$l.localize($me.purpose)</div>
+#end
+
+#if($me.briefDescription && $StringUtil.isNotBlank($l.localize($me.briefDescription))) 
+	<p>$l.localize($me.briefDescription)</p>
+#end
+
+#if($me.mainDescription  && $StringUtil.isNotBlank($l.localize($me.mainDescription)))
+	<span class="h2">$l.text('h5_aufgabe_maindescription')</span> 
+	<p>$l.localize($me.mainDescription)</p>
+#end
+
+#if($me.keyConsiderations && $StringUtil.isNotBlank($l.localize($me.keyConsiderations))) 
+	<span class="h2">$l.text('h5_aufgabe_keyconsiderations')</span>
+	<p>$l.localize($me.keyConsiderations)</p>
+#end
+
+#if($me.alternatives && $StringUtil.isNotBlank($l.localize($me.alternatives))) 
+	<span class="h2">$l.text('h5_aufgabe_alternatives')</span>
+	<p>$l.localize($me.alternatives)</p>
+#end
+
+#if($me.checklist && $StringUtil.isNotBlank($l.localize($me.checklist))) 
+	<span class="h2">$l.text('h5_aufgabe_checkliste')</span>
+	<p>$l.localize($me.checklist)</p>
+#end
+
+
+#parse( "ch/admin/isb/hermes5/business/rendering/relationshiptable.vm" )
+

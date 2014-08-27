@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/templates/template-webpublisher.xhtml">
+
+
+	<ui:define name="content">
+		<div id="content-big">
+			<h5:messages />
+			<h:form id="translation-zip-download" enctype="multipart/form-data">
+				<p:dialog id="render-download-dialog" modal="true" closable="false"
+					width="450"
+					visible="#{translationZipDownloadController.renderDownloadDialog}">
+
+					<div>
+						Das Übersetzungsdokument wurde erfolgreich erzeugt und kann heruntergeladen werden. 
+						In der Übersetzungsdatei befindet sich eine Anleitung wie zu Übersetzung vergegangen werden muss.
+					</div>
+					<br />
+					<div>
+						<p:commandLink
+							value="#{translationZipDownloadController.filename}" ajax="false">
+							<p:fileDownload value="#{translationZipDownloadController.file}" />
+						</p:commandLink>
+						<br /> <br />
+
+					</div>
+					<h:commandButton styleClass="h5button" value="Schliessen"
+						action="#{translationZipDownloadController.downloadDialogClose}" />
+				</p:dialog>
+
+				<h1>Übersetzungsdokument exportieren</h1>
+
+				<h:panelGrid columns="2" width="30%">
+					<h:outputText styleClass="h3" value="Sprache:" />
+					<h:outputText styleClass="h3" value="Status:" />
+
+					<h:selectManyCheckbox layout="pageDirection"
+						value="#{translationZipDownloadController.selectedLanguages}">
+						<f:selectItem id="checkbox-fr" itemLabel="fr" itemValue="fr" />
+						<f:selectItem id="checkbox-it" itemLabel="it" itemValue="it" />
+						<f:selectItem id="checkbox-en" itemLabel="en" itemValue="en" />
+					</h:selectManyCheckbox>
+
+
+					<h:selectManyCheckbox layout="pageDirection"
+						value="#{translationZipDownloadController.selectedStatus}">
+						<f:selectItem id="checkbox-unvollstaendig"
+							itemLabel="unvollständig" itemValue="UNVOLLSTAENDIG" />
+						<f:selectItem id="checkbox-inArbeit" itemLabel="in arbeit"
+							itemValue="IN_ARBEIT" />
+						<f:selectItem id="checkbox-inFreigegeben" itemLabel="freigegeben"
+							itemValue="FREIGEGEBEN" />
+					</h:selectManyCheckbox>
+
+					<h:button id="cancel-button" value="Zurück"
+						type="submit"
+						outcome="#{translationZipDownloadController.backIdentifier}" />
+
+					<h:commandButton value="Exportieren starten"
+						action="#{translationZipDownloadController.triggerExport}"
+						ajax="false">
+					</h:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

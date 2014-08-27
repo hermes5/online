@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/h5"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/templates/template-webpublisher.xhtml">
+
+
+	<ui:define name="content">
+		<div id="content-big">
+		<h:form id="model-overview-form">
+			<script type="text/javascript">
+      $(document).ready(
+    	function() {
+          $("#model-import-export-menu").change(function() {
+              var value = $(this).val();
+              $("#model-import-export-menu").val('options');
+              if (value == 'import') {
+                  $("#model-overview-form_button-model-import").click();
+              }
+              else if (value == 'export') {
+                  $("#model-overview-form_button-model-export").click();
+              }
+             });
+          
+          $("#translation-import-export-menu").change(function() {
+              var value = $(this).val();
+              $("#model-import-export-menu").val('options');
+              if (value == 'import') {
+                  $("#model-overview-form_button-translation-import").click();
+              }
+              else if (value == 'export') {
+                  $("#model-overview-form_button-translation-export").click();
+              }
+             })
+          });
+		</script>
+			<h5:messages />
+
+			<select id="model-import-export-menu" class="h5-action-dropdown"
+				name="selectionField">
+				<option value="options" selected="selected">EPF Modell</option>
+				<option id="model-import-option" value="import">importieren</option>
+				<!-- 				<option value="export">exportieren</option> -->
+			</select>
+
+			<h:commandButton style="display:none;" id="button-model-import"
+				value="" action="#{modelOverviewController.uploadButtonClicked}" />
+			<h:commandButton style="display:none;" id="button-model-export"
+				value="" onclick="alert('not yet implemented')" />
+
+
+			<select id="translation-import-export-menu"
+				class="h5-action-dropdown" name="selectionField">
+				<option value="options" selected="selected">Übersetzung</option>
+				<option value="import">importieren</option>
+				<option value="export">exportieren</option>
+			</select>
+
+
+			<h:commandButton style="display:none;" id="button-translation-import"
+				value="" action="#{modelOverviewController.gotoTranslationImport}" />
+			<h:commandButton style="display:none;" id="button-translation-export"
+				value=""
+				action="#{modelOverviewController.gotoTranslationZipExport}" />
+
+
+
+			<h:commandButton id="model-delete-button" styleClass="h5-menu-button"
+				value="Löschen"
+				action="#{modelOverviewController.deleteModel}" />
+
+			<h:commandButton id="model-publish-button" styleClass="h5-menu-button"
+				value="Publizieren"
+				action="#{modelOverviewController.publishModel}" />
+				
+			<h:commandButton id="export-print-xml-button" styleClass="h5-menu-button"
+				value="Druck-XML exportieren"
+				action="#{modelOverviewController.gotoPrintXmlDownload}" />
+
+
+			<br />
+			<br />
+			<br />
+
+			<h:outputText value="EPF modelle:" style="font-size:150%" />
+			<br />
+			<br />
+			<p:dataTable id="model-data-table" 
+				value="#{modelOverviewController.models}" var="m" width="800px"
+				rowKey="#{m.data.identifier}" styleClass="model-list-table"
+				rowStyleClass="#{m.data.published == true ? 'model-list-table-published-row' : null}"
+				paginator="true" paginatorPosition="bottom" rows="20"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="10,20,50">
+				<p:column id="selected">
+					<h:selectBooleanCheckbox id="table-row-checkbox"
+						value="#{m.selected}" />
+				</p:column>
+				<p:column id="name" sortBy="#{m.data.title}">
+					<f:facet name="header">
+						Titel
+					</f:facet>
+					<h:commandLink id="model-detail-link"
+						action="#{modelOverviewController.showModelDetailsClicked(m.data.identifier)}"
+						value="#{m.data.title}" />
+				</p:column>
+				<p:column id="version" sortBy="#{m.data.version}">
+					<f:facet name="header">
+						Version
+					</f:facet>
+					<h:outputText value="#{m.data.version}" />
+				</p:column>
+				<p:column id="statusFr" sortBy="#{m.data.statusFr.nameDe}">
+					<f:facet name="header">
+						Französisch
+					</f:facet>
+					<h:outputText value="#{m.data.statusFr.nameDe}" />
+				</p:column>
+				<p:column id="statusIt" sortBy="#{m.data.statusIt.nameDe}">
+					<f:facet name="header">
+						Italienisch
+					</f:facet>
+					<h:outputText value="#{m.data.statusIt.nameDe}" />
+				</p:column>
+				<p:column id="statusEn" sortBy="#{m.data.statusEn.nameDe}">
+					<f:facet name="header">
+						Englisch
+					</f:facet>
+					<h:outputText value="#{m.data.statusEn.nameDe}" />
+				</p:column>
+				<p:column id="last-publication" sortBy="#{m.data.lastPublication}">
+					<f:facet name="header">
+						Zuletzt Publiziert
+					</f:facet>
+					<h:outputText value="#{m.data.lastPublication}" />
+				</p:column>
+				<p:column id="last-change" sortBy="#{m.data.lastChange}">
+					<f:facet name="header">
+						Zuletzt Geändert
+					</f:facet>
+					<h:outputText value="#{m.data.lastChange}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,13 @@
+<div class="title">
+	<span class="h1">#if($titleKey)$l.text($titleKey): #end$l.localize($me.presentationName)</span>
+	#if($app == 'al') 
+		<a href="index.html">$l.text('al_doc_back_to_scenario')</a>
+	#end
+</div>
+
+#if($me.mainDescription && $StringUtil.isNotBlank($l.localize($me.mainDescription)))  
+	<p>$l.localize($me.mainDescription)</p>
+#end
+
+
+

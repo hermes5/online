@@ -1,0 +1,4 @@
+#if( ! $onlySearchableContent )
+</div>
+#end
+</div>

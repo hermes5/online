@@ -1,0 +1,22 @@
+<table class="module_overview_table listtable">
+	<tr>
+		<th>$l.text('h5_table_modul_uebersicht_header_modul')</th> 
+		<th>$l.text('h5_table_modul_uebersicht_header_beschreibung')</th> 
+	</tr> 
+	#foreach($modul in $module)
+		
+			<tr class="#if($module.indexOf($modul) % 2 == 0)even#{else}odd#end">
+				<td>
+					<a href="${urlprefix}${modul.name}.html">
+					 $l.localize($modul.presentationName)
+					</a>
+                </td>
+				 <td class="last">
+					#if($modul.briefDescription && $StringUtil.isNotBlank($l.localize($modul.briefDescription)))
+						$l.localize($modul.briefDescription)
+					 #end
+                </td>
+            </tr>
+	#end
+
+</table>
