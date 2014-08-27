@@ -3,7 +3,7 @@ HERMES 5 Web Solution
 
 HERMES ist die Projektmanagementmethode für Projekte im Bereich der Informatik, der Entwicklung von Dienstleistungen und Produkten sowie der Anpassung der Geschäftsorganisation. HERMES unterstützt die Steuerung, Führung und Ausführung von Projekten verschiedener Charakteristiken und Komplexität. HERMES hat eine klare, einfach verständliche Methodenstruktur, ist modular aufgebaut und erweiterbar.
 
-In diesem Repository befinden sich Tools für Tools-Hersteller, Entwickler und System-Administratoren welche im Wiki https://github.com/hermes5/websolution/wiki beschrieben sind.
+In diesem Repository befinden die Sourcen für die HERMES 5 Online Lösung (http://www.hermes.admin.ch) welche im Wiki https://github.com/hermes5/websolution/wiki beschrieben sind.
 
 Der aktuelle Release kann unter https://github.com/hermes5/websolution/releases downgeloadet werden.
 
@@ -21,22 +21,22 @@ the License.
 Die HERMES 5 Web Solution ist für Wildfly 8.0 optimiert und basiert auf Java EE 7 (CDI, JPA, JSF).
 
 Zusätzlich werden folgende OpenSource Technologien verwendet:
-- AWS Java SDK	AWS API	http://aws.amazon.com/de/sdkforjava/
-- CDI	Dependency Injection	http://docs.oracle.com/javaee/6/tutorial/doc/gjbnz.html
-- Hibernate	O/R Mapping	http://www.hibernate.org/docs
-- JSF	Web Framework	http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html
-- jTidy	HTML Validation	http://jtidy.sourceforge.net/
-- JUnit	Testing	http://junit.org/
-- Lucene	Search Engine	http://lucene.apache.org/
-- Maven	Build Tool	http://maven.apache.org/
-- Mockito	Testing	http://code.google.com/p/mockito/
-- MyBatis Migrations	DB Setup	http://www.mybatis.org/migrations/index.html
-- MySQL	DB	http://www.mysql.com/
-- POI	MS Office Files Editing	http://poi.apache.org/
-- Primefaces	JSF Components	http://www.primefaces.org/
-- Selenium	Web Testing	http://docs.seleniumhq.org/
-- Tika	Text Extraction	https://tika.apache.org/
-- Velocity	Template Engine	http://velocity.apache.org/
-- Wildfly	Application Server	http://www.wildfly.org/
+- AWS Java SDK	(AWS API)	http://aws.amazon.com/de/sdkforjava/
+- CDI	(Dependency Injection)	http://docs.oracle.com/javaee/6/tutorial/doc/gjbnz.html
+- Hibernate	(O/R Mapping)	http://www.hibernate.org/docs
+- JSF	(Web Framework)	http://www.oracle.com/technetwork/java/javaee/javaserverfaces-139869.html
+- jTidy	(HTML Validation)	http://jtidy.sourceforge.net/
+- JUnit	(Testing)	http://junit.org/
+- Lucene	(Search Engine)	http://lucene.apache.org/
+- Maven	(Build Tool)	http://maven.apache.org/
+- Mockito	(Testing)	http://code.google.com/p/mockito/
+- MyBatis (Migrations	DB Setup)	http://www.mybatis.org/migrations/index.html
+- MySQL	(DB)	http://www.mysql.com/
+- POI	(MS Office Files Editing)	http://poi.apache.org/
+- Primefaces	(JSF Components)	http://www.primefaces.org/
+- Selenium	(Web Testing)	http://docs.seleniumhq.org/
+- Tika	(Text Extraction)	https://tika.apache.org/
+- Velocity	(Template Engine)	http://velocity.apache.org/
+- Wildfly	(Application Server)	http://www.wildfly.org/
 
 
